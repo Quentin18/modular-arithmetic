@@ -1,0 +1,5 @@
+*.depend
+*.a
+*.o
+*.out
+.vscode
