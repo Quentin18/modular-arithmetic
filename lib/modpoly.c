@@ -349,7 +349,7 @@ int mp_const(const polynomial p)
 }
 
 /**
- * Evaluate a polynomial p for x using naive method.
+ * Evaluate a polynomial p at x using naive method.
  * 
  * @param p polynomial
  * @param dp degree of p
@@ -369,7 +369,7 @@ int mp_eval(const polynomial p, int dp, int x, int m)
 }
 
 /**
- * Evaluate a polynomial p for x using Horner’s Method.
+ * Evaluate a polynomial p at x using Horner’s Method.
  * 
  * @param p polynomial
  * @param dp degree of p
@@ -386,4 +386,23 @@ int mp_horner(const polynomial p, int dp, int x, int m)
         y = x * y + p[i];
     }
     return mod(y, m);
+}
+
+/**
+ * Evaluate a polynomial p at n points using Horner’s Method.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param x points
+ * @param y p(x)
+ * @param n number of points
+ * @param m modulus
+ */
+void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int m)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        y[i] = mp_horner(p, dp, x[i], m);
+    }
 }

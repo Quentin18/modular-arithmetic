@@ -22,3 +22,4 @@ int mp_lead(const polynomial p, int dp);
 int mp_const(const polynomial p);
 int mp_eval(const polynomial p, int dp, int x, int m);
 int mp_horner(const polynomial p, int dp, int x, int m);
+void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int m);
