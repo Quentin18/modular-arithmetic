@@ -349,20 +349,41 @@ int mp_const(const polynomial p)
 }
 
 /**
- * Evaluate a polynomial p for x.
+ * Evaluate a polynomial p for x using naive method.
  * 
  * @param p polynomial
  * @param dp degree of p
  * @param x integer
- * @return p(x)
+ * @param m modulus
+ * @return p(x) mod m
  */
-int mp_eval(polynomial p, int dp, int x)
+int mp_eval(const polynomial p, int dp, int x, int m)
 {
     unsigned int i;
-    int r = 0;
+    int y = 0;
     for (i = 0; i <= dp; i++)
     {
-        r += p[i] * power(x, i);
+        y += p[i] * power(x, i);
     }
-    return r;
+    return mod(y, m);
+}
+
+/**
+ * Evaluate a polynomial p for x using Horner’s Method.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param x integer
+ * @param m modulus
+ * @return p(x) mod m
+ */
+int mp_horner(const polynomial p, int dp, int x, int m)
+{
+    int i;
+    int y = 0;
+    for (i = dp; i >= 0; i--)
+    {
+        y = x * y + p[i];
+    }
+    return mod(y, m);
 }

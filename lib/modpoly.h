@@ -20,4 +20,5 @@ int mp_inv(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
 int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q, int m);
 int mp_lead(const polynomial p, int dp);
 int mp_const(const polynomial p);
-int mp_eval(polynomial p, int dp, int x);
+int mp_eval(const polynomial p, int dp, int x, int m);
+int mp_horner(const polynomial p, int dp, int x, int m);
