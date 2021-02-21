@@ -325,6 +325,46 @@ int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q,
 }
 
 /**
+ * Computes r = (p mod d) in Fm[x].
+ * 
+ * @param p dividend
+ * @param dp degree of p
+ * @param d divisor
+ * @param dd degree of d
+ * @param r remainder
+ * @param m modulus
+ * @return degree of r
+ */
+int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r, int m)
+{
+    int i, j, t, dr;
+
+    /* Init remainder r */
+    dr = mp_copy(p, dp, r);
+
+    for (i = dp; i >= dd; i--)
+    {
+        t = mi_div(r[i], d[dd], m);
+        r[i] = 0;
+
+        for (j = 0; j < dd; j++)
+        {
+            r[i - dd + j] = mod(r[i - dd + j] - d[j] * t, m);
+        }
+    }
+
+    /* Calculate degree dr */
+    for (i = dr; i > 0; i--)
+    {
+        if (r[i] != 0)
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+/**
  * Return the leading term of a polynomial.
  * 
  * @param p polynomial
@@ -404,5 +444,29 @@ void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int
     for (i = 0; i < n; i++)
     {
         y[i] = mp_horner(p, dp, x[i], m);
+    }
+}
+
+/**
+ * Evaluate a polynomial p at n points using fast evaluation.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param x points
+ * @param y p(x)
+ * @param n number of points
+ * @param m modulus
+ */
+void mp_fast_multipoint_eval(const polynomial p, int dp, int *x, int *y, int n, int m)
+{
+    int i;
+    polynomial r;
+    int dd = 1;
+    polynomial d = {0, 1};
+    for (i = 0; i < n; i++)
+    {
+        d[0] = mod(-x[i], m);
+        mp_mod(p, dp, d, dd, r, m);
+        y[i] = r[0];
     }
 }

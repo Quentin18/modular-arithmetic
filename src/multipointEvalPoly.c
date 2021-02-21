@@ -37,7 +37,8 @@ int main()
     }
 
     /* Evaluate polynomial */
-    mp_horner_multipoint(p, dp, x, y, n, m);
+    mp_fast_multipoint_eval(p, dp, x, y, n, m);
+    /* mp_horner_multipoint(p, dp, x, y, n, m); */
 
     /* Print result */
     printf("== Result ==\n");
