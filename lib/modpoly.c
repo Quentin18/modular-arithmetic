@@ -1,8 +1,9 @@
 /**
  * @file modpoly.c
- * @brief Modular arithmetic implementation for polynomials
+ * @brief Polynomial arithmetic implementation with coefficients in Z/mZ
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include "modpoly.h"
 #include "modint.h"
 #include "extendedGcdPoly.h"
@@ -48,6 +49,12 @@ int mp_init(polynomial p, char *name)
     int dp;
     printf("Degree of %s: ", name);
     scanf("%d", &dp);
+    if (dp > MAX_DEGREE)
+    {
+        fprintf(stderr,
+                "Mod Error: max degree for polynomials is %d (%d is too big). Exit.\n", MAX_DEGREE, dp);
+        exit(EXIT_FAILURE);
+    }    
     for (i = 0; i <= dp; i++)
     {
         printf("%s[%d] = ", name, i);
@@ -243,9 +250,10 @@ int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
     int dr = dp + dq;
     if (dr > MAX_DEGREE)
     {
-        fprintf(stderr, "Error: the degree %d is greater than %d.\n", dr, MAX_DEGREE);
-        return -1;
-    }
+        fprintf(stderr,
+                "Mod Error: max degree for polynomials is %d (%d is too big). Exit.\n", MAX_DEGREE, dr);
+        exit(EXIT_FAILURE);
+    }   
 
     /* Initialize r */
     for (i = 0; i <= dr; i++)
@@ -303,8 +311,8 @@ int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q,
     int dq = dp - dd;
     if (dq < 0)
     {
-        fprintf(stderr, "Error: the degree of p (%d) must be greater than the degree of d (%d).\n", dp, dd);
-        return -1;
+        fprintf(stderr, "Mod Error: the degree of p (%d) must be greater than the degree of d (%d). Exit.\n", dp, dd);
+        exit(EXIT_FAILURE);
     }
 
     /* Init remainder r */
