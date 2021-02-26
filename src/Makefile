@@ -5,7 +5,7 @@ INCFLAGS = -I$(LIB_DIR)
 LIBFLAGS = -L$(LIB_DIR) -lmod
 LIB = $(LIB_DIR)/libmod.a
 
-all: ../extendedGcdInt.out ../extendedGcdPoly.out ../testModInt.out ../testModPoly.out ../evalPoly.out ../multipointEvalPoly.out
+all: ../extendedGcdInt.out ../extendedGcdPoly.out ../testModInt.out ../testModPoly.out ../testModPolyP.out ../evalPoly.out ../multipointEvalPoly.out
 
 ../extendedGcdInt.out: $(LIB)
 	$(CC) mainExtendedGcdInt.c $(CFLAGS) $(INCFLAGS) $(LIBFLAGS) -o $@
@@ -18,6 +18,9 @@ all: ../extendedGcdInt.out ../extendedGcdPoly.out ../testModInt.out ../testModPo
 
 ../testModPoly.out: $(LIB)
 	$(CC) testModPoly.c $(CFLAGS) $(INCFLAGS) $(LIBFLAGS) -o $@
+
+../testModPolyP.out: $(LIB)
+	$(CC) testModPolyP.c $(CFLAGS) $(INCFLAGS) $(LIBFLAGS) -o $@
 
 ../evalPoly.out: $(LIB)
 	$(CC) evalPoly.c $(CFLAGS) $(INCFLAGS) $(LIBFLAGS) -o $@
