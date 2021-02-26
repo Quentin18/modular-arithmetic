@@ -1,12 +1,12 @@
 /**
- * @file testModInt.c
- * @brief Tests for modular arithmetic for polynomials
+ * @file testModPoly.c
+ * @brief Tests for polynomial arithmetic in Fm[x]
  */
 #include <stdio.h>
 #include "modpoly.h"
 
 /**
- * Tests for modular arithmetic for polynomials.
+ * Tests for polynomial arithmetic in Fm[x]
  */
 int main()
 {
