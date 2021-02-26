@@ -11,6 +11,8 @@
 int mpp_init(polynomial p, char *name);
 void mpp_print(const polynomial p, int dp, char *name);
 int mpp_copy(const polynomial p, int dp, polynomial r);
+int mpp_lead(const polynomial p, int dp);
+int mpp_const(const polynomial p);
 
 /* Operators */
 
