@@ -19,16 +19,16 @@ int main()
     dp = 3, dd = 2, m = 7;
 
     printf("Field: F%d[X]\n", m);
-    mp_print(p, dp, "P");
-    mp_print(d, dd, "D");
+    p_print(p, dp, "P");
+    p_print(d, dd, "D");
 
     /* Quotient */
     dq = mp_div(p, dp, d, dd, q, m);
-    mp_print(q, dq, "Q");
+    p_print(q, dq, "Q");
 
     /* Remainder */
     dr = mp_mod(p, dp, d, dd, r, m);
-    mp_print(r, dr, "R");
+    p_print(r, dr, "R");
 
     return 0;
 }

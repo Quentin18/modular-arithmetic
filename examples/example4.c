@@ -19,20 +19,20 @@ int main()
     dp = 3, dq = 2, m = 4;
 
     printf("Field: F%d[X]\n", m);
-    mp_print(p, dp, "P");
-    mp_print(q, dq, "Q");
+    p_print(p, dp, "P");
+    p_print(q, dq, "Q");
 
     /* Addition */
     dr = mp_add(p, dp, q, dq, r, m);
-    mp_print(r, dr, "P + Q");
+    p_print(r, dr, "P + Q");
 
     /* Subtraction */
     ds = mp_sub(p, dp, q, dq, s, m);
-    mp_print(s, ds, "P - Q");
+    p_print(s, ds, "P - Q");
 
     /* Multiplication */
     dt = mp_mul(p, dp, q, dq, t, m);
-    mp_print(t, dt, "P * Q");
+    p_print(t, dt, "P * Q");
 
     return 0;
 }
