@@ -68,7 +68,7 @@ void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, pol
  * @param dv degree of v
  * @param m modulus
  */
-void p_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
+void mp_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
 {
     polynomial rp, up, vp, rs, us, vs, q, q_rp, q_up, q_vp;
     int drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
