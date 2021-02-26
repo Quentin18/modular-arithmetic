@@ -18,12 +18,12 @@ int main()
     printf("== Polynomial multipoint evaluation ==\n");
 
     /* Init polynomial */
-    dp = mp_init(p, "P");
+    dp = p_scan(p, "P");
     printf("Modulus: ");
     scanf("%d", &m);
 
     /* Print polynomial */
-    mp_print(p, dp, "P");
+    p_print(p, dp, "P");
 
     /* Allocate memory */
     printf("n = "); scanf("%d", &n);

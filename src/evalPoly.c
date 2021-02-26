@@ -16,12 +16,12 @@ int main()
     printf("== Polynomial evaluation ==\n");
 
     /* Init polynomial */
-    dp = mp_init(p, "P");
+    dp = p_scan(p, "P");
     printf("Modulus: ");
     scanf("%d", &m);
 
     /* Print polynomial */
-    mp_print(p, dp, "P");
+    p_print(p, dp, "P");
 
     /* Evaluate polynomial */
     printf("X = "); scanf("%d", &x);
