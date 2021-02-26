@@ -1,6 +1,6 @@
 /**
  * @file extendedGcdPoly.h
- * @brief Header file for Extended Euclidean algorithm for polynomials
+ * @brief Header file for Extended Euclidean algorithm for polynomials in Fm[x]
  */
 #pragma once
 

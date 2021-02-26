@@ -1,6 +1,6 @@
 /**
  * @file extendedGcdPoly.c
- * @brief Extended Euclidean algorithm for polynomials
+ * @brief Extended Euclidean algorithm for polynomials in Fm[x]
  */
 #include <stdio.h>
 #include "extendedGcdPoly.h"

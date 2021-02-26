@@ -1,6 +1,6 @@
 /**
  * @file modpoly.c
- * @brief Polynomial arithmetic implementation with coefficients in Z/mZ
+ * @brief Polynomial arithmetic implementation in Fm[x]
  */
 #include <stdio.h>
 #include <stdlib.h>

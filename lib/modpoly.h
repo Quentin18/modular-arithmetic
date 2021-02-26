@@ -1,6 +1,6 @@
 /**
  * @file modpoly.h
- * @brief Header file for modular arithmetic with polynomials
+ * @brief Header file for polynomial arithmetic in Fm[x]
  */
 #pragma once
 
