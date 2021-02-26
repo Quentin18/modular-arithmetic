@@ -19,7 +19,6 @@ int mp_const(const polynomial p);
 int mp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
 int mp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
 int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
-int mp_inv(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
 int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q, int m);
 int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r, int m);
 

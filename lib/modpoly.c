@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "modpoly.h"
 #include "modint.h"
-#include "extendedGcdPoly.h"
 
 /**
  * Return the maximum between a and b.
@@ -218,44 +217,6 @@ int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
             r[i + j] = mi_add(r[i + j], mi_mul(p[i], q[j], m), m);
         }
     }
-    return dr;
-}
-
-/**
- * Computes r = p^-1 in Fm[x]/q.
- *
- * @param p first polynomial
- * @param dp degree of p
- * @param q second polynomial
- * @param dq degree of q
- * @param r polynomial p^-1 in Fm[x]/q
- * @param m modulus
- * @return degree of r
- */
-int mp_inv(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m)
-{
-    polynomial gcd, u;
-    int dgcd, du, dr, gcd_inv, i;
-    mp_extended_gcd(q, dq, p, dp, gcd, &dgcd, u, &du, r, &dr, m);
-
-    /* Case deg(gcd(q, p)) != 0 */
-    if (dgcd != 0)
-    {
-        fprintf(stderr,
-                "Mod Error: p has no inverse modulo q. Exit.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    /* Case gcd(q, p) != 1 */
-    if (mp_const(gcd) != 1)
-    {
-        gcd_inv = mi_inv(mp_const(gcd), m);
-        for (i = 0; i <= dr; i++)
-        {
-            r[i] = mi_mul(r[i], gcd_inv, m);
-        }
-    }
-
     return dr;
 }
 
