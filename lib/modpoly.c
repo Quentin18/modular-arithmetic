@@ -21,22 +21,6 @@ int max(int a, int b)
 }
 
 /**
- * Return the result of x^n.
- * 
- * @param x integer
- * @param n exponent
- * @return x^n
- */
-int power(int x, unsigned int n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    return x * power(x, n - 1);
-}
-
-/**
  * Init a polynomial with scanf.
  * 
  * @param p polynomial
@@ -45,22 +29,7 @@ int power(int x, unsigned int n)
  */
 int mp_init(polynomial p, char *name)
 {
-    unsigned int i;
-    int dp;
-    printf("Degree of %s: ", name);
-    scanf("%d", &dp);
-    if (dp > MAX_DEGREE)
-    {
-        fprintf(stderr,
-                "Mod Error: max degree for polynomials is %d (%d is too big). Exit.\n", MAX_DEGREE, dp);
-        exit(EXIT_FAILURE);
-    }    
-    for (i = 0; i <= dp; i++)
-    {
-        printf("%s[%d] = ", name, i);
-        scanf("%d", &p[i]);
-    }
-    return dp;
+    return p_init(p, name);
 }
 
 /**
@@ -72,46 +41,7 @@ int mp_init(polynomial p, char *name)
  */
 void mp_print(const polynomial p, int dp, char *name)
 {
-    int i, v;
-    printf("%s =", name);
-    if (dp == 0)
-    {
-        printf(" %d\n", p[0]);
-        return;
-    }
-    for (i = dp; i >= 0; i--)
-    {
-        if (p[i] == 0)
-        {
-            continue;
-        }
-        if (p[i] < 0)
-        {
-            v = -p[i];
-            printf(" -");
-        }
-        else
-        {
-            v = p[i];
-            if (i != dp)
-            {
-                printf(" +");
-            }
-        }
-        if (v != 1 || i == 0)
-        {
-            printf(" %d", v);
-        }
-        if (i > 1)
-        {
-            printf(" X^%d", i);
-        }
-        else if (i == 1)
-        {
-            printf(" X");
-        }
-    }
-    printf("\n");
+    p_print(p, dp, name);
 }
 
 /**
@@ -124,12 +54,7 @@ void mp_print(const polynomial p, int dp, char *name)
  */
 int mp_copy(const polynomial p, int dp, polynomial r)
 {
-    unsigned int i;
-    for (i = 0; i <= dp; i++)
-    {
-        r[i] = p[i];
-    }
-    return dp;
+    return p_copy(p, dp, r);
 }
 
 /**
@@ -141,7 +66,7 @@ int mp_copy(const polynomial p, int dp, polynomial r)
  */
 int mp_lead(const polynomial p, int dp)
 {
-    return p[dp];
+    return p_lead(p, dp);
 }
 
 /**
@@ -153,7 +78,7 @@ int mp_lead(const polynomial p, int dp)
  */
 int mp_const(const polynomial p)
 {
-    return p[0];
+    return p_const(p);
 }
 
 /**
@@ -426,13 +351,7 @@ int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r,
  */
 int mp_eval(const polynomial p, int dp, int x, int m)
 {
-    unsigned int i;
-    int y = 0;
-    for (i = 0; i <= dp; i++)
-    {
-        y += p[i] * power(x, i);
-    }
-    return mod(y, m);
+    return mod(p_eval(p, dp, x), m);
 }
 
 /**
@@ -446,13 +365,7 @@ int mp_eval(const polynomial p, int dp, int x, int m)
  */
 int mp_horner(const polynomial p, int dp, int x, int m)
 {
-    int i;
-    int y = 0;
-    for (i = dp; i >= 0; i--)
-    {
-        y = x * y + p[i];
-    }
-    return mod(y, m);
+    return mod(p_horner(p, dp, x), m);
 }
 
 /**
