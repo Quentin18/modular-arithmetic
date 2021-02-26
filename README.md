@@ -8,7 +8,7 @@ Trois arithmétiques différentes sont implémentées :
 
 - [x] `modint` : arithmétique d’entiers modulo un entier m
 - [x] `modpoly` : arithmétique de polynômes à coefficients dans Z/mZ
-- [ ] `modpolyp` : arithmétique de polynômes modulo un polynôme P
+- [x] `modpolyp` : arithmétique de polynômes modulo un polynôme P
 
 La librairie contient aussi :
 - [x] `extendedGcdInt` : algorithme d’Euclide étendu pour les entiers
