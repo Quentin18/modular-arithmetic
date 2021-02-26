@@ -112,4 +112,26 @@ int mpp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r
     return dr;
 }
 
+/**
+ * Computes r = (p * q) in Fm[x]/P.
+ * 
+ * @param p first polynomial
+ * @param dp degree of p
+ * @param q second polynomial
+ * @param dq degree of q
+ * @param r polynomial (p * q) in Fm[x]/P
+ * @param m modulus for coefficients
+ * @param P modulus polynomial
+ * @param dP degree of P
+ * @return degree of r
+ */
+int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP)
+{
+    int dr, ds;
+    polynomial s;
+    ds = mp_mul(p, dp, q, dq, s, m);
+    dr = mp_mod(s, ds, P, dP, r, m);
+    return dr;
+}
+
 /* TODO to complete operators */
