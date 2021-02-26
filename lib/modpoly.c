@@ -285,9 +285,28 @@ int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
  */
 int mp_inv(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m)
 {
-    polynomial w, u;
-    int dw, du, dr;
-    mp_extended_gcd(q, dq, p, dp, w, &dw, u, &du, r, &dr, m);
+    polynomial gcd, u;
+    int dgcd, du, dr, gcd_inv, i;
+    mp_extended_gcd(q, dq, p, dp, gcd, &dgcd, u, &du, r, &dr, m);
+
+    /* Case deg(gcd(q, p)) != 0 */
+    if (dgcd != 0)
+    {
+        fprintf(stderr,
+                "Mod Error: p has no inverse modulo q. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Case gcd(q, p) != 1 */
+    if (mp_const(gcd) != 1)
+    {
+        gcd_inv = mi_inv(mp_const(gcd), m);
+        for (i = 0; i <= dr; i++)
+        {
+            r[i] = mi_mul(r[i], gcd_inv, m);
+        }
+    }
+
     return dr;
 }
 
