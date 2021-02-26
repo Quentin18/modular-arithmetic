@@ -2,6 +2,8 @@
  * @file modint.c
  * @brief Modular arithmetic implementation for integers
  */
+#include <stdio.h>
+#include <stdlib.h>
 #include "modint.h"
 #include "extendedGcdInt.h"
 
@@ -59,6 +61,7 @@ int mi_mul(int a, int b, int m)
 
 /**
  * Computes a^-1 mod m.
+ * It exits if a has no inverse modulo m.
  * 
  * @param a integer
  * @param m modulus
@@ -66,8 +69,14 @@ int mi_mul(int a, int b, int m)
  */
 int mi_inv(int a, int m)
 {
-    int u, v;
-    extended_gcd_int(m, a, &u, &v);
+    int r, u, v;
+    r = extended_gcd_int(m, a, &u, &v);
+    if (r != 1)
+    {
+        fprintf(stderr,
+                "Mod Error: %d has no inverse modulo %d. Exit.\n", a, m);
+        exit(EXIT_FAILURE);
+    }
     return mod(v, m);
 }
 
