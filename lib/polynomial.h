@@ -10,7 +10,7 @@
 /* Represents a polynomial */
 typedef int polynomial[MAX_DEGREE + 1];
 
-int p_init(polynomial p, char *name);
+int p_scan(polynomial p, char *name);
 void p_print(const polynomial p, int dp, char *name);
 int p_copy(const polynomial p, int dp, polynomial r);
 int p_lead(const polynomial p, int dp);

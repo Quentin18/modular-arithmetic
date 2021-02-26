@@ -29,7 +29,7 @@ int power(int x, unsigned int n)
  * @param name name of p
  * @return degree of p
  */
-int p_init(polynomial p, char *name)
+int p_scan(polynomial p, char *name)
 {
     unsigned int i;
     int dp;

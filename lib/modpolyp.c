@@ -7,67 +7,7 @@
 #include "modpolyp.h"
 #include "modpoly.h"
 #include "modint.h"
-
-/**
- * Init a polynomial with scanf.
- * 
- * @param p polynomial
- * @param name name of p
- * @return degree of p
- */
-int mpp_init(polynomial p, char *name)
-{
-    return p_init(p, name);
-}
-
-/**
- * Print a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @param name name of p
- */
-void mpp_print(const polynomial p, int dp, char *name)
-{
-    p_print(p, dp, name);
-}
-
-/**
- * Copy a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @param r copy of p
- * @return degree of r
- */
-int mpp_copy(const polynomial p, int dp, polynomial r)
-{
-    return p_copy(p, dp, r);
-}
-
-/**
- * Return the leading term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return leading term of p
- */
-int mpp_lead(const polynomial p, int dp)
-{
-    return p_lead(p, dp);
-}
-
-/**
- * Return the constant term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return constant term of p
- */
-int mpp_const(const polynomial p)
-{
-    return p_const(p);
-}
+#include "extendedGcdPoly.h"
 
 /**
  * Computes r = (p + q) in Fm[x]/P.
@@ -141,7 +81,7 @@ int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r
  * @param p polynomial
  * @param dp degree of p
  * @param r polynomial p^-1 in Fm[x]/P
- * @param m modulus
+ * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
  * @return degree of r
@@ -161,9 +101,9 @@ int mpp_inv(const polynomial p, int dp, polynomial r, int m, const polynomial P,
     }
 
     /* Case gcd(P, p) != 1 */
-    if (mp_const(gcd) != 1)
+    if (p_const(gcd) != 1)
     {
-        gcd_inv = mi_inv(mp_const(gcd), m);
+        gcd_inv = mi_inv(p_const(gcd), m);
         for (i = 0; i <= dr; i++)
         {
             r[i] = mi_mul(r[i], gcd_inv, m);

@@ -25,10 +25,10 @@ void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, pol
     polynomial rp, up, vp, rs, us, vs, q, q_rp, q_up, q_vp;
     int drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
 
-    *dr = mp_copy(a, da, r);
+    *dr = p_copy(a, da, r);
     *du = 0; u[0] = 1;
     *dv = 0; v[0] = 0;
-    drp = mp_copy(b, db, rp);
+    drp = p_copy(b, db, rp);
     dup = 0; up[0] = 0;
     dvp = 0; vp[0] = 1;
 
@@ -38,18 +38,18 @@ void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, pol
 
         dq_rp = mp_mul(q, dq, rp, drp, q_rp, m);
         drs = mp_sub(r, *dr, q_rp, dq_rp, rs, m);
-        *dr = mp_copy(rp, drp, r);
-        drp = mp_copy(rs, drs, rp);
+        *dr = p_copy(rp, drp, r);
+        drp = p_copy(rs, drs, rp);
 
         dq_up = mp_mul(q, dq, up, dup, q_up, m);
         dus = mp_sub(u, *du, q_up, dq_up, us, m);
-        *du = mp_copy(up, dup, u);
-        dup = mp_copy(us, dus, up);
+        *du = p_copy(up, dup, u);
+        dup = p_copy(us, dus, up);
 
         dq_vp = mp_mul(q, dq, vp, dvp, q_vp, m);
         dvs = mp_sub(v, *dv, q_vp, dq_vp, vs, m);
-        *dv = mp_copy(vp, dvp, v);
-        dvp = mp_copy(vs, dvs, vp);
+        *dv = p_copy(vp, dvp, v);
+        dvp = p_copy(vs, dvs, vp);
     }
 }
 
@@ -68,45 +68,45 @@ void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, pol
  * @param dv degree of v
  * @param m modulus
  */
-void mp_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
+void p_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
 {
     polynomial rp, up, vp, rs, us, vs, q, q_rp, q_up, q_vp;
     int drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
     int i = 0;
 
-    *dr = mp_copy(a, da, r);
+    *dr = p_copy(a, da, r);
     *du = 0; u[0] = 1;
     *dv = 0; v[0] = 0;
-    drp = mp_copy(b, db, rp);
+    drp = p_copy(b, db, rp);
     dup = 0; up[0] = 0;
     dvp = 0; vp[0] = 1;
 
     while (!(drp == 0 && rp[0] == 0))
     {
         printf("== Iteration %d ==\n", i++);
-        mp_print(r, *dr, "R");
-        mp_print(u, *du, "U");
-        mp_print(v, *dv, "V");
+        p_print(r, *dr, "R");
+        p_print(u, *du, "U");
+        p_print(v, *dv, "V");
 
         dq = mp_div(r, *dr, rp, drp, q, m);
 
         dq_rp = mp_mul(q, dq, rp, drp, q_rp, m);
         drs = mp_sub(r, *dr, q_rp, dq_rp, rs, m);
-        *dr = mp_copy(rp, drp, r);
-        drp = mp_copy(rs, drs, rp);
+        *dr = p_copy(rp, drp, r);
+        drp = p_copy(rs, drs, rp);
 
         dq_up = mp_mul(q, dq, up, dup, q_up, m);
         dus = mp_sub(u, *du, q_up, dq_up, us, m);
-        *du = mp_copy(up, dup, u);
-        dup = mp_copy(us, dus, up);
+        *du = p_copy(up, dup, u);
+        dup = p_copy(us, dus, up);
 
         dq_vp = mp_mul(q, dq, vp, dvp, q_vp, m);
         dvs = mp_sub(v, *dv, q_vp, dq_vp, vs, m);
-        *dv = mp_copy(vp, dvp, v);
-        dvp = mp_copy(vs, dvs, vp);
+        *dv = p_copy(vp, dvp, v);
+        dvp = p_copy(vs, dvs, vp);
     }
     printf("== Result ==\n");
-    mp_print(r, *dr, "R");
-    mp_print(u, *du, "U");
-    mp_print(v, *dv, "V");
+    p_print(r, *dr, "R");
+    p_print(u, *du, "U");
+    p_print(v, *dv, "V");
 }

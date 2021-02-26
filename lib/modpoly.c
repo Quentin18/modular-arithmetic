@@ -20,67 +20,6 @@ int max(int a, int b)
 }
 
 /**
- * Init a polynomial with scanf.
- * 
- * @param p polynomial
- * @param name name of p
- * @return degree of p
- */
-int mp_init(polynomial p, char *name)
-{
-    return p_init(p, name);
-}
-
-/**
- * Print a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @param name name of p
- */
-void mp_print(const polynomial p, int dp, char *name)
-{
-    p_print(p, dp, name);
-}
-
-/**
- * Copy a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @param r copy of p
- * @return degree of r
- */
-int mp_copy(const polynomial p, int dp, polynomial r)
-{
-    return p_copy(p, dp, r);
-}
-
-/**
- * Return the leading term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return leading term of p
- */
-int mp_lead(const polynomial p, int dp)
-{
-    return p_lead(p, dp);
-}
-
-/**
- * Return the constant term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return constant term of p
- */
-int mp_const(const polynomial p)
-{
-    return p_const(p);
-}
-
-/**
  * Computes r = (p + q) in Fm[x].
  * 
  * @param p first polynomial
@@ -245,7 +184,7 @@ int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q,
     }
 
     /* Init remainder r */
-    mp_copy(p, dp, r);
+    p_copy(p, dp, r);
 
     for (i = dp; i >= dd; i--)
     {
@@ -277,7 +216,7 @@ int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r,
     int i, j, t, dr;
 
     /* Init remainder r */
-    dr = mp_copy(p, dp, r);
+    dr = p_copy(p, dp, r);
 
     for (i = dp; i >= dd; i--)
     {
@@ -360,6 +299,7 @@ void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int
  */
 void mp_fast_multipoint_eval(const polynomial p, int dp, int *x, int *y, int n, int m)
 {
+    /* TODO to modify */
     int i;
     polynomial r;
     int dd = 1;
