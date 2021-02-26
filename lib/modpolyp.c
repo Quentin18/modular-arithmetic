@@ -134,4 +134,42 @@ int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r
     return dr;
 }
 
+/**
+ * Computes r = p^-1 in Fm[x]/P.
+ *
+ * @param p polynomial
+ * @param dp degree of p
+ * @param r polynomial p^-1 in Fm[x]/P
+ * @param m modulus
+ * @param P modulus polynomial
+ * @param dP degree of P
+ * @return degree of r
+ */
+int mpp_inv(const polynomial p, int dp, polynomial r, int m, const polynomial P, int dP)
+{
+    polynomial gcd, u;
+    int dgcd, du, dr, gcd_inv, i;
+    mp_extended_gcd(P, dP, p, dp, gcd, &dgcd, u, &du, r, &dr, m);
+
+    /* Case deg(gcd(P, p)) != 0 */
+    if (dgcd != 0)
+    {
+        fprintf(stderr,
+                "Mod Error: p has no inverse modulo P. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Case gcd(P, p) != 1 */
+    if (mp_const(gcd) != 1)
+    {
+        gcd_inv = mi_inv(mp_const(gcd), m);
+        for (i = 0; i <= dr; i++)
+        {
+            r[i] = mi_mul(r[i], gcd_inv, m);
+        }
+    }
+
+    return dr;
+}
+
 /* TODO to complete operators */
