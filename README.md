@@ -14,8 +14,16 @@ La librairie contient aussi :
 - [x] `extendedGcdInt` : algorithme d’Euclide étendu pour les entiers
 - [x] `extendedGcdPoly` : algorithme d'Euclide étendu pour les polynômes à coefficients dans Z/mZ
 
+## Exemples
+Le dossier `examples` contient des exemples d'utilisation de la librairie `libmod`. Pour compiler un exemple :
+```
+cd examples
+make example1.out
+```
+La commande `make` permet aussi de tout compiler. Le README du dossier `examples` montre le rôle de chaque exemple.
+
 ## Exécutables
-Le dossier `src` contient les fonctions principales pour générer des exécutables utilisant la librairie statique `libmod`.
+Le dossier `src` contient les fonctions principales pour générer des exécutables utilisant la librairie `libmod`.
 
 Les exécutables suivants sont créés avec la commande `make`.
 
