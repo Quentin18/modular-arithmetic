@@ -4,11 +4,7 @@
  */
 #pragma once
 
-/* Maximum degree for polynomials */
-#define MAX_DEGREE 100
-
-/* Represents a polynomial */
-typedef int polynomial[MAX_DEGREE + 1];
+#include "polynomial.h"
 
 int mp_init(polynomial p, char *name);
 void mp_print(const polynomial p, int dp, char *name);
