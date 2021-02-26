@@ -2,7 +2,21 @@
 
 Implémentation de l'arithmétique modulaire pour les entiers et les polynômes.
 
+## Librairie
+Le dossier `lib` contient le code de la librairie statique `libmod` qui est générée avec le makefile.
+Trois arithmétiques différentes sont implémentées :
+
+- [x] `modint` : arithmétique d’entiers modulo un entier m
+- [x] `modpoly` : arithmétique de polynômes à coefficients dans Z/mZ
+- [ ] `modpolyp` : arithmétique de polynômes modulo un polynôme P
+
+La librairie contient aussi :
+- [x] `extendedGcdInt` : algorithme d’Euclide étendu pour les entiers
+- [x] `extendedGcdPoly` : algorithme d'Euclide étendu pour les polynômes à coefficients dans Z/mZ
+
 ## Exécutables
+Le dossier `src` contient les fonctions principales pour générer des exécutables utilisant la librairie statique `libmod`.
+
 Les exécutables suivants sont créés avec la commande `make`.
 
 - **extendedGcdInt.out** : algorithme d'Euclide étendu pour les entiers. Exemple ([source](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example)) :
@@ -24,7 +38,7 @@ b = 46
 (r, u, v) = (2, -9, 47)
 ```
 
-- **extendedGcdPoly.out** : algorithme d'Euclide étendu pour les polynômes à coefficients dans $F_p$. Exemple ([source](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example_2)) :
+- **extendedGcdPoly.out** : algorithme d'Euclide étendu pour les polynômes à coefficients dans Z/mZ. Exemple ([source](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example_2)) :
 ```
 == Extended Euclidean algorithm for polynomials ==
 Degree of A: 8
@@ -70,7 +84,7 @@ U = X^5 + X^4 + X^3 + X^2 + 1
 V = X^7 + X^6 + X^3 + X
 ```
 
-- **evalPoly.out** : évaluation d'un polynôme en un point dans $F_p$. Exemple :
+- **evalPoly.out** : évaluation d'un polynôme en un point dans Z/mZ. Exemple :
 ```
 == Polynomial evaluation ==
 Degree of P: 3
@@ -84,7 +98,7 @@ X = 2
 P(2) = 1
 ```
 
-- **multipointEvalPoly.out** : évaluation multipoint d'un polynôme dans $F_p$. Exemple :
+- **multipointEvalPoly.out** : évaluation multipoint d'un polynôme dans Z/mZ. Exemple :
 ```
 == Polynomial multipoint evaluation ==
 Degree of P: 3
