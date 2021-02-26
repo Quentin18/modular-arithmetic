@@ -133,6 +133,30 @@ int mp_copy(const polynomial p, int dp, polynomial r)
 }
 
 /**
+ * Return the leading term of a polynomial.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @return leading term of p
+ */
+int mp_lead(const polynomial p, int dp)
+{
+    return p[dp];
+}
+
+/**
+ * Return the constant term of a polynomial.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @return constant term of p
+ */
+int mp_const(const polynomial p)
+{
+    return p[0];
+}
+
+/**
  * Computes r = (p + q) in Fm[x].
  * 
  * @param p first polynomial
@@ -389,30 +413,6 @@ int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r,
         }
     }
     return 0;
-}
-
-/**
- * Return the leading term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return leading term of p
- */
-int mp_lead(const polynomial p, int dp)
-{
-    return p[dp];
-}
-
-/**
- * Return the constant term of a polynomial.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @return constant term of p
- */
-int mp_const(const polynomial p)
-{
-    return p[0];
 }
 
 /**
