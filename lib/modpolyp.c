@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "modpolyp.h"
 #include "modpoly.h"
+#include "modint.h"
 
 /**
  * Init a polynomial with scanf.
