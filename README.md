@@ -3,6 +3,7 @@
 Implémentation de l'arithmétique modulaire pour les entiers et les polynômes.
 
 ## Librairie
+
 Le dossier `lib` contient le code de la librairie statique `libmod` qui est générée avec le makefile.
 Trois arithmétiques différentes sont implémentées :
 
@@ -15,6 +16,7 @@ La librairie contient aussi :
 - [x] `extendedGcdPoly` : algorithme d'Euclide étendu pour les polynômes à coefficients dans Z/mZ
 
 ## Exemples
+
 Le dossier `examples` contient des exemples d'utilisation de la librairie `libmod`. Pour compiler un exemple :
 ```
 cd examples
@@ -23,6 +25,7 @@ make example1.out
 La commande `make` permet aussi de tout compiler. Le README du dossier `examples` montre le rôle de chaque exemple.
 
 ## Exécutables
+
 Le dossier `src` contient les fonctions principales pour générer des exécutables utilisant la librairie `libmod`.
 
 Les exécutables suivants sont créés avec la commande `make`.
@@ -136,3 +139,20 @@ P(4) = 6
 - [ ] [Interpolation lagrangienne](https://fr.wikipedia.org/wiki/Interpolation_lagrangienne)
 - [ ] Interpolation rapide
 - [ ] [Algorithme de Wiedemann](https://en.wikipedia.org/wiki/Block_Wiedemann_algorithm)
+
+## Documentation
+
+La documentation peut être générée avec la commande :
+```
+make docs
+```
+Il suffit ensuite d'aller à l'adresse `docs/html/index.html`.
+
+Pour supprimer la documentation :
+```
+make cleandocs
+```
+
+## Auteur
+
+[Quentin Deschamps](mailto:quentindeschamps18@gmail.com)
