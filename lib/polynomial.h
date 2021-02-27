@@ -4,10 +4,14 @@
  */
 #pragma once
 
-/* Maximum degree for polynomials */
+/**
+ *  Maximum degree for polynomials
+ */
 #define MAX_DEGREE 100
 
-/* Represents a polynomial */
+/**
+ * Represents a polynomial
+ */
 typedef int polynomial[MAX_DEGREE + 1];
 
 int p_scan(polynomial p, char *name);

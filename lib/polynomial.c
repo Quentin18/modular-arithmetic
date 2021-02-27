@@ -134,7 +134,6 @@ int p_lead(const polynomial p, int dp)
  * Return the constant term of a polynomial.
  * 
  * @param p polynomial
- * @param dp degree of p
  * @return constant term of p
  */
 int p_const(const polynomial p)
