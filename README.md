@@ -5,8 +5,9 @@ Implémentation de l'arithmétique modulaire pour les entiers et les polynômes.
 ## Librairie
 
 Le dossier `lib` contient le code de la librairie statique `libmod` qui est générée avec le makefile.
-Trois arithmétiques différentes sont implémentées :
+Quatre arithmétiques différentes sont implémentées :
 
+- [x] `integer` : arithmétique d'entiers
 - [x] `modint` : arithmétique d’entiers modulo un entier m
 - [x] `modpoly` : arithmétique de polynômes à coefficients dans Z/mZ
 - [x] `modpolyp` : arithmétique de polynômes modulo un polynôme P
