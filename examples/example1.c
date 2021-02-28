@@ -5,6 +5,7 @@
  * Source: https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example
  */
 #include <stdio.h>
+#include "integer.h"
 #include "extendedGcdInt.h"
 
 /**
@@ -13,10 +14,14 @@
 int main()
 {
     int a, b, u, v;
-    printf("== Extended Euclidean algorithm for integers ==\n");
     a = 240; b = 46;
-    printf("a = %d\n", a);
-    printf("b = %d\n", b);
+
+    printf("== Extended Euclidean algorithm for integers ==\n");
+    i_print(a, "a");
+    i_print(b, "b");
+
+    /* Extended Euclidean algorithm */
     print_extended_gcd_int(a, b, &u, &v);
+
     return 0;
 }

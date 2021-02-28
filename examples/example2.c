@@ -11,16 +11,22 @@
 int main()
 {
     int a = 3, b = 4, m = 5;
-    printf("a = %d, b = %d, m = %d\n", a, b, m);
+
+    i_print(a, "a");
+    i_print(b, "b");
+    i_print(m, "m");
+
+    /* Ring */
+    printf("Ring: Z/%dZ\n", m);
 
     /* Addition */
-    printf("a + b = %d mod %d\n", mi_add(a, b, m), m);
+    i_print(mi_add(a, b, m), "a + b");
 
     /* Subtraction */
-    printf("a - b = %d mod %d\n", mi_sub(a, b, m), m);
+    i_print(mi_sub(a, b, m), "a - b");
 
     /* Multiplication */
-    printf("a * b = %d mod %d\n", mi_mul(a, b, m), m);
+    i_print(mi_mul(a, b, m), "a * b");
 
     return 0;
 }
