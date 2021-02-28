@@ -3,6 +3,7 @@
  * @brief Main for Extended Euclidean algorithm for integers
  */
 #include <stdio.h>
+#include "integer.h"
 #include "extendedGcdInt.h"
 
 /**
@@ -11,9 +12,15 @@
 int main()
 {
     int a, b, u, v;
+
     printf("== Extended Euclidean algorithm for integers ==\n");
-    printf("a = "); scanf("%d", &a);
-    printf("b = "); scanf("%d", &b);
+
+    /* Init integers */
+    i_scan(&a, "a");
+    i_scan(&b, "b");
+
+    /* Extended Euclidean algorithm */
     print_extended_gcd_int(a, b, &u, &v);
+
     return 0;
 }
