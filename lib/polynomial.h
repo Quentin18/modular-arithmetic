@@ -5,7 +5,7 @@
 #pragma once
 
 /**
- *  Maximum degree for polynomials
+ * Maximum degree for polynomials
  */
 #define MAX_DEGREE 100
 
