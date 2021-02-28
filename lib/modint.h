@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include "integer.h"
+
 int mod(int a, int m);
 int mi_add(int a, int b, int m);
 int mi_sub(int a, int b, int m);
