@@ -16,6 +16,12 @@ La librairie contient aussi :
 - [x] `extendedGcdInt` : algorithme d’Euclide étendu pour les entiers
 - [x] `extendedGcdPoly` : algorithme d'Euclide étendu pour les polynômes à coefficients dans Z/mZ
 
+La librairie définit les quatre types suivants :
+- `integer` : entier de 32 bits
+- `modulus` : entier modulo de 32 bits
+- `polynomial` : polynôme d'entiers
+- `degree` : degré d'un polynôme
+
 ## Exemples
 
 Le dossier `examples` contient des exemples d'utilisation de la librairie `libmod`. Pour compiler un exemple :
@@ -140,6 +146,7 @@ P(4) = 6
 - [ ] [Interpolation lagrangienne](https://fr.wikipedia.org/wiki/Interpolation_lagrangienne)
 - [ ] Interpolation rapide
 - [ ] [Algorithme de Wiedemann](https://en.wikipedia.org/wiki/Block_Wiedemann_algorithm)
+- [ ] [Algorithme de remontée de Hensel](https://fr.wikipedia.org/wiki/Lemme_de_Hensel)
 
 ## Documentation
 
