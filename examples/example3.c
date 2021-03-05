@@ -10,7 +10,7 @@
  */
 int main()
 {
-    int a = 3, b = 4, m = 5;
+    integer a = 3, b = 4, m = 5;
 
     i_print(a, "a");
     i_print(b, "b");

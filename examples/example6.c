@@ -13,7 +13,8 @@
 int main()
 {
     polynomial r, u, v;
-    int da, db, dr, du, dv, m;
+    degree da, db, dr, du, dv;
+    modulus m;
 
     polynomial a = {1, 1, 0, 1, 1, 0, 0, 0, 1};
     polynomial b = {1, 1, 0, 0, 1, 0, 1};

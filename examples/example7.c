@@ -10,8 +10,9 @@
  */
 int main()
 {
-    int dp, dq, dr, ds, dt, dP, m;
     polynomial r, s, t;
+    degree dp, dq, dr, ds, dt, dP;
+    modulus m;
 
     polynomial p = {2, 2};
     polynomial q = {1, 2};
