@@ -14,9 +14,9 @@
  * @param m modulus
  * @return a mod m
  */
-int mod(int a, int m)
+integer mod(int64_t a, modulus m)
 {
-    int r = a % m;
+    integer r = a % m;
     return r < 0 ? r + m : r;
 }
 
@@ -28,7 +28,7 @@ int mod(int a, int m)
  * @param m modulus
  * @return (a + b) mod m
  */
-int mi_add(int a, int b, int m)
+integer mi_add(integer a, integer b, modulus m)
 {
     return mod(a + b, m);
 }
@@ -41,7 +41,7 @@ int mi_add(int a, int b, int m)
  * @param m modulus
  * @return (a - b) mod m
  */
-int mi_sub(int a, int b, int m)
+integer mi_sub(integer a, integer b, modulus m)
 {
     return mod(a - b, m);
 }
@@ -54,7 +54,7 @@ int mi_sub(int a, int b, int m)
  * @param m modulus
  * @return (a * b) mod m
  */
-int mi_mul(int a, int b, int m)
+integer mi_mul(integer a, integer b, modulus m)
 {
     return mod(a * b, m);
 }
@@ -67,9 +67,9 @@ int mi_mul(int a, int b, int m)
  * @param m modulus
  * @return a^-1 mod m
  */
-int mi_inv(int a, int m)
+integer mi_inv(integer a, modulus m)
 {
-    int r, u, v;
+    integer r, u, v;
     r = extended_gcd_int(m, a, &u, &v);
     if (r != 1)
     {
@@ -88,7 +88,7 @@ int mi_inv(int a, int m)
  * @param m modulus
  * @return (a / b) mod m
  */
-int mi_div(int a, int b, int m)
+integer mi_div(integer a, integer b, modulus m)
 {
     return mi_mul(a, mi_inv(b, m), m);
 }

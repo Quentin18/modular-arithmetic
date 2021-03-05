@@ -6,9 +6,14 @@
 
 #include "integer.h"
 
-int mod(int a, int m);
-int mi_add(int a, int b, int m);
-int mi_sub(int a, int b, int m);
-int mi_mul(int a, int b, int m);
-int mi_inv(int a, int m);
-int mi_div(int a, int b, int m);
+/**
+ * Represents a modulus
+ */
+typedef uint32_t modulus;
+
+integer mod(int64_t a, modulus m);
+integer mi_add(integer a, integer b, modulus m);
+integer mi_sub(integer a, integer b, modulus m);
+integer mi_mul(integer a, integer b, modulus m);
+integer mi_inv(integer a, modulus m);
+integer mi_div(integer a, integer b, modulus m);
