@@ -5,9 +5,10 @@
 #pragma once
 
 #include "polynomial.h"
+#include "modint.h"
 
-int mpp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP);
-int mpp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP);
-int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP);
-int mpp_inv(const polynomial p, int dp, polynomial r, int m, const polynomial P, int dP);
-int mpp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q, int m, const polynomial P, int dP);
+degree mpp_add(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP);
+degree mpp_sub(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP);
+degree mpp_mul(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP);
+degree mpp_inv(const polynomial p, degree dp, polynomial r, modulus m, const polynomial P, degree dP);
+degree mpp_div(const polynomial p, degree dp, const polynomial d, degree dd, polynomial q, modulus m, const polynomial P, degree dP);

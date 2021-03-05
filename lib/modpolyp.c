@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "modpolyp.h"
 #include "modpoly.h"
-#include "modint.h"
 #include "extendedGcdPoly.h"
 
 /**
@@ -22,9 +21,9 @@
  * @param dP degree of P
  * @return degree of r
  */
-int mpp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP)
+degree mpp_add(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP)
 {
-    int dr, ds;
+    degree dr, ds;
     polynomial s;
     ds = mp_add(p, dp, q, dq, s, m);
     dr = mp_mod(s, ds, P, dP, r, m);
@@ -44,9 +43,9 @@ int mpp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r
  * @param dP degree of P
  * @return degree of r
  */
-int mpp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP)
+degree mpp_sub(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP)
 {
-    int dr, ds;
+    degree dr, ds;
     polynomial s;
     ds = mp_sub(p, dp, q, dq, s, m);
     dr = mp_mod(s, ds, P, dP, r, m);
@@ -66,9 +65,9 @@ int mpp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r
  * @param dP degree of P
  * @return degree of r
  */
-int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP)
+degree mpp_mul(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP)
 {
-    int dr, ds;
+    degree dr, ds;
     polynomial s;
     ds = mp_mul(p, dp, q, dq, s, m);
     dr = mp_mod(s, ds, P, dP, r, m);
@@ -86,10 +85,12 @@ int mpp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r
  * @param dP degree of P
  * @return degree of r
  */
-int mpp_inv(const polynomial p, int dp, polynomial r, int m, const polynomial P, int dP)
+degree mpp_inv(const polynomial p, degree dp, polynomial r, modulus m, const polynomial P, degree dP)
 {
     polynomial gcd, u;
-    int dgcd, du, dr, gcd_inv, i;
+    degree dgcd, du, dr;
+    integer gcd_inv;
+    int i;
     mp_extended_gcd(P, dP, p, dp, gcd, &dgcd, u, &du, r, &dr, m);
 
     /* Case deg(gcd(P, p)) != 0 */
@@ -126,9 +127,9 @@ int mpp_inv(const polynomial p, int dp, polynomial r, int m, const polynomial P,
  * @param dP degree of P
  * @return degree of r
  */
-int mpp_div(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m, const polynomial P, int dP)
+degree mpp_div(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m, const polynomial P, degree dP)
 {
-    int dr, dq_inv;
+    degree dr, dq_inv;
     polynomial q_inv;
     dq_inv = mpp_inv(q, dq, q_inv, m, P, dP);
     dr = mpp_mul(p, dp, q_inv, dq_inv, r, m, P, dP);

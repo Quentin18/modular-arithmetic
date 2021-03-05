@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "modpoly.h"
-#include "modint.h"
 
 /**
  * Return the maximum between a and b.
@@ -30,7 +29,7 @@ int max(int a, int b)
  * @param m modulus
  * @return degree of r
  */
-int mp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m)
+degree mp_add(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m)
 {
     unsigned int i;
 
@@ -80,7 +79,7 @@ int mp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
  * @param m modulus
  * @return degree of r
  */
-int mp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m)
+degree mp_sub(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m)
 {
     unsigned int i;
 
@@ -129,12 +128,12 @@ int mp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
  * @param m modulus
  * @return degree of r
  */
-int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m)
+degree mp_mul(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m)
 {
     unsigned int i, j;
 
     /* Calculate degree dr */
-    int dr = dp + dq;
+    degree dr = dp + dq;
     if (dr > MAX_DEGREE)
     {
         fprintf(stderr,
@@ -170,23 +169,26 @@ int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r,
  * @param m modulus
  * @return degree of q
  */
-int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q, int m)
+degree mp_div(const polynomial p, degree dp, const polynomial d, degree dd, polynomial q, modulus m)
 {
-    int i, j, t;
+    int i, j;
+    integer t;
     polynomial r;
 
     /* Calculate degree dq */
     int dq = dp - dd;
+
+    /* Case zero polynomial */
     if (dq < 0)
     {
-        fprintf(stderr, "Mod Error: the degree of p (%d) must be greater than the degree of d (%d). Exit.\n", dp, dd);
-        exit(EXIT_FAILURE);
+        r[0] = 0;
+        return 0;
     }
 
     /* Init remainder r */
     p_copy(p, dp, r);
 
-    for (i = dp; i >= dd; i--)
+    for (i = dp; i >= (int)dd; i--)
     {
         q[i - dd] = t = mi_div(r[i], d[dd], m);
         r[i] = 0;
@@ -211,7 +213,7 @@ int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q,
  * @param m modulus
  * @return degree of r
  */
-int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r, int m)
+degree mp_mod(const polynomial p, degree dp, const polynomial d, degree dd, polynomial r, modulus m)
 {
     int i, j, t, dr;
 
@@ -249,7 +251,7 @@ int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r,
  * @param m modulus
  * @return p(x) mod m
  */
-int mp_eval(const polynomial p, int dp, int x, int m)
+integer mp_eval(const polynomial p, degree dp, integer x, modulus m)
 {
     return mod(p_eval(p, dp, x), m);
 }
@@ -263,7 +265,7 @@ int mp_eval(const polynomial p, int dp, int x, int m)
  * @param m modulus
  * @return p(x) mod m
  */
-int mp_horner(const polynomial p, int dp, int x, int m)
+integer mp_horner(const polynomial p, degree dp, integer x, modulus m)
 {
     return mod(p_horner(p, dp, x), m);
 }
@@ -278,7 +280,7 @@ int mp_horner(const polynomial p, int dp, int x, int m)
  * @param n number of points
  * @param m modulus
  */
-void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int m)
+void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m)
 {
     int i;
     for (i = 0; i < n; i++)
@@ -297,12 +299,12 @@ void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int
  * @param n number of points
  * @param m modulus
  */
-void mp_fast_multipoint_eval(const polynomial p, int dp, int *x, int *y, int n, int m)
+void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m)
 {
     /* TODO to modify */
     int i;
     polynomial r;
-    int dd = 1;
+    degree dd = 1;
     polynomial d = {0, 1};
     for (i = 0; i < n; i++)
     {

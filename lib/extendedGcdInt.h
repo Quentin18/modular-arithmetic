@@ -4,5 +4,7 @@
  */
 #pragma once
 
-int extended_gcd_int(int a, int b, int* u, int* v);
-int print_extended_gcd_int(int a, int b, int* u, int* v);
+#include "integer.h"
+
+integer extended_gcd_int(integer a, integer b, integer* u, integer* v);
+integer print_extended_gcd_int(integer a, integer b, integer* u, integer* v);

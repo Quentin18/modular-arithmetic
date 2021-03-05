@@ -14,9 +14,9 @@
  * @param v bezout coefficient of b
  * @return r = gcd(a, b) = a * u + b * v
  */
-int extended_gcd_int(int a, int b, int* u, int* v)
+integer extended_gcd_int(integer a, integer b, integer* u, integer* v)
 {
-    int r, rp, up, vp, rs, us, vs, q;
+    integer r, rp, up, vp, rs, us, vs, q;
     r = a; *u = 1; *v = 0;
     rp = b; up = 0; vp = 1;
     while (rp != 0)
@@ -44,9 +44,9 @@ int extended_gcd_int(int a, int b, int* u, int* v)
  * @param v bezout coefficient of b
  * @return r = gcd(a, b) = a * u + b * v
  */
-int print_extended_gcd_int(int a, int b, int* u, int* v)
+integer print_extended_gcd_int(integer a, integer b, integer* u, integer* v)
 {
-    int r, rp, up, vp, rs, us, vs, q;
+    integer r, rp, up, vp, rs, us, vs, q;
     int i = 0;
     r = a; *u = 1; *v = 0;
     rp = b; up = 0; vp = 1;

@@ -20,10 +20,10 @@
  * @param dv degree of v
  * @param m modulus
  */
-void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
+void mp_extended_gcd(const polynomial a, degree da, const polynomial b, degree db, polynomial r, degree* dr, polynomial u, degree* du, polynomial v, degree* dv, modulus m)
 {
     polynomial rp, up, vp, rs, us, vs, q, q_rp, q_up, q_vp;
-    int drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
+    degree drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
 
     *dr = p_copy(a, da, r);
     *du = 0; u[0] = 1;
@@ -68,10 +68,10 @@ void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, pol
  * @param dv degree of v
  * @param m modulus
  */
-void mp_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m)
+void mp_print_extended_gcd(const polynomial a, degree da, const polynomial b, degree db, polynomial r, degree* dr, polynomial u, degree* du, polynomial v, degree* dv, modulus m)
 {
     polynomial rp, up, vp, rs, us, vs, q, q_rp, q_up, q_vp;
-    int drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
+    degree drp, dup, dvp, drs, dus, dvs, dq, dq_rp, dq_up, dq_vp;
     int i = 0;
 
     *dr = p_copy(a, da, r);

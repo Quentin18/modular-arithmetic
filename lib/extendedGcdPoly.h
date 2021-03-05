@@ -6,5 +6,5 @@
 
 #include "modpoly.h"
 
-void mp_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m);
-void mp_print_extended_gcd(const polynomial a, int da, const polynomial b, int db, polynomial r, int* dr, polynomial u, int* du, polynomial v, int* dv, int m);
+void mp_extended_gcd(const polynomial a, degree da, const polynomial b, degree db, polynomial r, degree* dr, polynomial u, degree* du, polynomial v, degree* dv, modulus m);
+void mp_print_extended_gcd(const polynomial a, degree da, const polynomial b, degree db, polynomial r, degree* dr, polynomial u, degree* du, polynomial v, degree* dv, modulus m);

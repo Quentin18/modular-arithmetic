@@ -5,14 +5,15 @@
 #pragma once
 
 #include "polynomial.h"
+#include "modint.h"
 
-int mp_add(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
-int mp_sub(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
-int mp_mul(const polynomial p, int dp, const polynomial q, int dq, polynomial r, int m);
-int mp_div(const polynomial p, int dp, const polynomial d, int dd, polynomial q, int m);
-int mp_mod(const polynomial p, int dp, const polynomial d, int dd, polynomial r, int m);
+degree mp_add(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m);
+degree mp_sub(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m);
+degree mp_mul(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m);
+degree mp_div(const polynomial p, degree dp, const polynomial d, degree dd, polynomial q, modulus m);
+degree mp_mod(const polynomial p, degree dp, const polynomial d, degree dd, polynomial r, modulus m);
 
-int mp_eval(const polynomial p, int dp, int x, int m);
-int mp_horner(const polynomial p, int dp, int x, int m);
-void mp_horner_multipoint(const polynomial p, int dp, int *x, int *y, int n, int m);
-void mp_fast_multipoint_eval(const polynomial p, int dp, int *x, int *y, int n, int m);
+integer mp_eval(const polynomial p, degree dp, integer x, modulus m);
+integer mp_horner(const polynomial p, degree dp, integer x, modulus m);
+void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
+void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
