@@ -11,14 +11,16 @@
 int main()
 {
     polynomial p;
-    int dp, m, x, y;
+    degree dp;
+    modulus m;
+    integer x, y;
 
     printf("== Polynomial evaluation ==\n");
 
     /* Init polynomial */
     dp = p_scan(p, "P");
     printf("Modulus: ");
-    scanf("%d", &m);
+    scanf("%u", &m);
 
     /* Print polynomial */
     p_print(p, dp, "P");

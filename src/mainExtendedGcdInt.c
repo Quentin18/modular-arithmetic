@@ -11,7 +11,7 @@
  */
 int main()
 {
-    int a, b, u, v;
+    integer a, b, u, v;
 
     printf("== Extended Euclidean algorithm for integers ==\n");
 

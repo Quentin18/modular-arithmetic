@@ -12,23 +12,25 @@
 int main()
 {
     polynomial p;
-    int dp, m, n, i;
-    int *x, *y;
+    degree dp;
+    modulus m;
+    unsigned int n, i;
+    integer *x, *y;
 
     printf("== Polynomial multipoint evaluation ==\n");
 
     /* Init polynomial */
     dp = p_scan(p, "P");
     printf("Modulus: ");
-    scanf("%d", &m);
+    scanf("%u", &m);
 
     /* Print polynomial */
     p_print(p, dp, "P");
 
     /* Allocate memory */
-    printf("n = "); scanf("%d", &n);
-    x = (int*)malloc(n * sizeof(int));
-    y = (int*)malloc(n * sizeof(int));
+    printf("n = "); scanf("%u", &n);
+    x = (integer*)malloc(n * sizeof(integer));
+    y = (integer*)malloc(n * sizeof(integer));
 
     /* Init x array */
     for (i = 0; i < n; i++)

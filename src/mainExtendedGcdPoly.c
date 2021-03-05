@@ -11,7 +11,8 @@
 int main()
 {
     polynomial a, b, r, u, v;
-    int da, db, dr, du, dv, m;
+    degree da, db, dr, du, dv;
+    modulus m;
 
     printf("== Extended Euclidean algorithm for polynomials ==\n");
 
@@ -19,7 +20,7 @@ int main()
     da = p_scan(a, "A");
     db = p_scan(b, "B");
     printf("Modulus: ");
-    scanf("%d", &m);
+    scanf("%u", &m);
 
     /* Print polynomials */
     p_print(a, da, "A");
