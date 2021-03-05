@@ -29,7 +29,7 @@ int power(int x, unsigned int n)
  * @param name name of p
  * @return degree of p
  */
-int p_scan(polynomial p, char *name)
+degree p_scan(polynomial p, char *name)
 {
     unsigned int i;
     int dp;
@@ -56,9 +56,10 @@ int p_scan(polynomial p, char *name)
  * @param dp degree of p
  * @param name name of p
  */
-void p_print(const polynomial p, int dp, char *name)
+void p_print(const polynomial p, degree dp, char *name)
 {
-    int i, v;
+    int i;
+    integer v;
     printf("%s =", name);
     if (dp == 0)
     {
@@ -108,7 +109,7 @@ void p_print(const polynomial p, int dp, char *name)
  * @param r copy of p
  * @return degree of r
  */
-int p_copy(const polynomial p, int dp, polynomial r)
+degree p_copy(const polynomial p, degree dp, polynomial r)
 {
     unsigned int i;
     for (i = 0; i <= dp; i++)
@@ -125,7 +126,7 @@ int p_copy(const polynomial p, int dp, polynomial r)
  * @param dp degree of p
  * @return leading term of p
  */
-int p_lead(const polynomial p, int dp)
+integer p_lead(const polynomial p, degree dp)
 {
     return p[dp];
 }
@@ -136,7 +137,7 @@ int p_lead(const polynomial p, int dp)
  * @param p polynomial
  * @return constant term of p
  */
-int p_const(const polynomial p)
+integer p_const(const polynomial p)
 {
     return p[0];
 }
@@ -149,7 +150,7 @@ int p_const(const polynomial p)
  * @param x integer
  * @return p(x)
  */
-int p_eval(const polynomial p, int dp, int x)
+integer p_eval(const polynomial p, degree dp, integer x)
 {
     unsigned int i;
     int y = 0;
@@ -168,7 +169,7 @@ int p_eval(const polynomial p, int dp, int x)
  * @param x integer
  * @return p(x)
  */
-int p_horner(const polynomial p, int dp, int x)
+integer p_horner(const polynomial p, degree dp, integer x)
 {
     int i;
     int y = 0;

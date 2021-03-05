@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include "integer.h"
+
 /**
  * Maximum degree for polynomials
  */
@@ -12,15 +14,20 @@
 /**
  * Represents a polynomial
  */
-typedef int polynomial[MAX_DEGREE + 1];
+typedef integer polynomial[MAX_DEGREE + 1];
 
-int p_scan(polynomial p, char *name);
-void p_print(const polynomial p, int dp, char *name);
-int p_copy(const polynomial p, int dp, polynomial r);
-int p_lead(const polynomial p, int dp);
-int p_const(const polynomial p);
+/**
+ * Represents a degree of a polynomial
+ */
+typedef unsigned int degree;
+
+degree p_scan(polynomial p, char *name);
+void p_print(const polynomial p, degree dp, char *name);
+degree p_copy(const polynomial p, degree dp, polynomial r);
+integer p_lead(const polynomial p, degree dp);
+integer p_const(const polynomial p);
 
 /* Evaluate */
 
-int p_eval(const polynomial p, int dp, int x);
-int p_horner(const polynomial p, int dp, int x);
+integer p_eval(const polynomial p, degree dp, integer x);
+integer p_horner(const polynomial p, degree dp, integer x);
