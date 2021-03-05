@@ -4,11 +4,18 @@
  */
 #pragma once
 
-void i_scan(int *a, char *name);
-void i_print(int a, char *name);
+#include <stdint.h>
 
-int i_add(int a, int b);
-int i_sub(int a, int b);
-int i_mul(int a, int b);
-int i_div(int a, int b);
-int i_mod(int a, int b);
+/**
+ * Represents an integer
+ */
+typedef int32_t integer;
+
+void i_scan(integer *a, char *name);
+void i_print(integer a, char *name);
+
+integer i_add(integer a, integer b);
+integer i_sub(integer a, integer b);
+integer i_mul(integer a, integer b);
+integer i_div(integer a, integer b);
+integer i_mod(integer a, integer b);

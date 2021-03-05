@@ -11,7 +11,7 @@
  * @param a integer
  * @param name name of a
  */
-void i_scan(int *a, char *name)
+void i_scan(integer *a, char *name)
 {
     printf("%s = ", name);
     scanf("%d", a);
@@ -23,7 +23,7 @@ void i_scan(int *a, char *name)
  * @param a integer
  * @param name name of a
  */
-void i_print(int a, char *name)
+void i_print(integer a, char *name)
 {
     printf("%s = %d\n", name, a);
 }
@@ -36,7 +36,7 @@ void i_print(int a, char *name)
  * @param b second integer
  * @return a + b
  */
-int i_add(int a, int b)
+integer i_add(integer a, integer b)
 {
     return a + b;
 }
@@ -48,7 +48,7 @@ int i_add(int a, int b)
  * @param b second integer
  * @return a - b
  */
-int i_sub(int a, int b)
+integer i_sub(integer a, integer b)
 {
     return a - b;
 }
@@ -60,7 +60,7 @@ int i_sub(int a, int b)
  * @param b second integer
  * @return a * b
  */
-int i_mul(int a, int b)
+integer i_mul(integer a, integer b)
 {
     return a * b;
 }
@@ -72,7 +72,7 @@ int i_mul(int a, int b)
  * @param b second integer
  * @return a / b
  */
-int i_div(int a, int b)
+integer i_div(integer a, integer b)
 {
     return a / b;
 }
@@ -84,7 +84,7 @@ int i_div(int a, int b)
  * @param b second integer
  * @return a % b
  */
-int i_mod(int a, int b)
+integer i_mod(integer a, integer b)
 {
     return a % b;
 }
