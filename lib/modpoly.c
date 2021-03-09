@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "modpoly.h"
 
 /**
@@ -92,7 +93,7 @@ degree mp_sub(const polynomial p, degree dp, const polynomial q, degree dq, poly
         }
         for (i = dp + 1; i <= dq; i++)
         {
-            r[i] = mod(q[i], m);
+            r[i] = mod(-q[i], m);
         }
     }
     else
@@ -312,4 +313,46 @@ void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer 
         mp_mod(p, dp, d, dd, r, m);
         y[i] = r[0];
     }
+}
+
+/**
+ * Print the subproduct tree recursively and computes the product (x - xi) in r.
+ * 
+ * @param x points
+ * @param n1 minimum index in x
+ * @param n2 maximum index in x
+ * @param r product of (x - xi)
+ * @param m modulus
+ * @return degree of r
+ */
+degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m)
+{
+    polynomial p, q;
+    degree dp, dq;
+    char pname[30], qname[30];
+
+    if ((n2 - n1) % 2 != 0)
+    {
+        fprintf(stderr,"Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (n2 - n1 == 2)
+    {
+        p[0] = mod(-x[n1], m); p[1] = 1;
+        q[0] = mod(-x[n1 + 1], m); q[1] = 1;
+        dp = dq = 1;
+    }
+    else
+    {
+        dp = mp_subproduct_tree(x, n1, n2 / 2, p, m);
+        dq = mp_subproduct_tree(x, n2 / 2, n2, q, m);
+    }
+
+    sprintf(pname, "P%d%d", n1, n2);
+    sprintf(qname, "Q%d%d", n1, n2);
+    p_print(p, dp, pname);
+    p_print(q, dq, qname);
+
+    return mp_mul(p, dp, q, dq, r, m);
 }
