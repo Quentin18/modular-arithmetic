@@ -179,3 +179,31 @@ integer p_horner(const polynomial p, degree dp, integer x)
     }
     return y;
 }
+
+/**
+ * Derivate a polynomial p at x.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param r derivative of p
+ * @return degree of r
+ */
+degree p_derivate(const polynomial p, degree dp, polynomial r)
+{
+    int i;
+    degree dr;
+
+    /* Case constant polynomial */
+    if (dp == 0)
+    {
+        r[0] = 0;
+        return 0;
+    }
+
+    dr = dp - 1;
+    for (i = 0; i <= dr; i++)
+    {
+        r[i] = p[i + 1] * (i + 1);
+    }
+    return dp - 1;
+}

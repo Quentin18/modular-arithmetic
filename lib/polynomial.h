@@ -31,3 +31,7 @@ integer p_const(const polynomial p);
 
 integer p_eval(const polynomial p, degree dp, integer x);
 integer p_horner(const polynomial p, degree dp, integer x);
+
+/* Derivate */
+
+degree p_derivate(const polynomial p, degree dp, polynomial r);
