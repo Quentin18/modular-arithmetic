@@ -18,3 +18,4 @@ integer mp_horner(const polynomial p, degree dp, integer x, modulus m);
 void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
 void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
 degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m);
+degree mp_derivate(const polynomial p, degree dp, polynomial r, modulus m);

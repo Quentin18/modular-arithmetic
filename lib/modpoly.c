@@ -356,3 +356,41 @@ degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, po
 
     return mp_mul(p, dp, q, dq, r, m);
 }
+
+/**
+ * Derivate a polynomial p in Fm[x].
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param r derivative of p
+ * @param m modulus
+ * @return degree of r
+ */
+degree mp_derivate(const polynomial p, degree dp, polynomial r, modulus m)
+{
+    int i;
+    degree dr;
+
+    /* Case constant polynomial */
+    if (dp == 0)
+    {
+        r[0] = 0;
+        return 0;
+    }
+
+    dr = dp - 1;
+    for (i = 0; i <= dr; i++)
+    {
+        r[i] = mi_mul(p[i + 1], i + 1, m);
+    }
+
+    /* Calculate degree dr */
+    for (i = dr; i > 0; i--)
+    {
+        if (r[i] != 0)
+        {
+            return i;
+        }
+    }
+    return 0;
+}

@@ -181,7 +181,7 @@ integer p_horner(const polynomial p, degree dp, integer x)
 }
 
 /**
- * Derivate a polynomial p at x.
+ * Derivate a polynomial p.
  * 
  * @param p polynomial
  * @param dp degree of p
@@ -205,5 +205,6 @@ degree p_derivate(const polynomial p, degree dp, polynomial r)
     {
         r[i] = p[i + 1] * (i + 1);
     }
-    return dp - 1;
+
+    return dr;
 }
