@@ -160,6 +160,28 @@ Q = 10 X + 3
 R = 2 X^2 + 3
 ```
 
+- **interpolationPoly.out** : interpolation de Lagrange dans Z/mZ. Exemple :
+```
+== Polynomial interpolation ==
+Modulus: 7
+n = 4
+x0 = 2
+y0 = 1
+x1 = 5
+y1 = 2
+x2 = 3
+y2 = 3
+x3 = 4
+y3 = 6
+Lagrange polynomial:
+L = X^3 + 2 X^2 + X + 4
+Verification:
+L(2) = 1
+L(5) = 2
+L(3) = 3
+L(4) = 6
+```
+
 ## Algorithmes
 
 - [x] [Algorithme d'Euclide étendu](https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide_%C3%A9tendu) (pour les entiers et les polynômes)
