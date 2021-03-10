@@ -281,7 +281,7 @@ integer mp_horner(const polynomial p, degree dp, integer x, modulus m)
  * @param n number of points
  * @param m modulus
  */
-void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m)
+void mp_horner_multipoint(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m)
 {
     int i;
     for (i = 0; i < n; i++)
@@ -300,7 +300,7 @@ void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y,
  * @param n number of points
  * @param m modulus
  */
-void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m)
+void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m)
 {
     /* TODO to modify */
     int i;
@@ -358,6 +358,42 @@ degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, po
 }
 
 /**
+ * Computes recursively the product r = (x - x[n1])(x - x[n1 + 1])...(x - x[n2]).
+ * 
+ * @param x points
+ * @param n1 minimum index in x
+ * @param n2 maximum index in x
+ * @param r product of (x - xi)
+ * @param m modulus
+ * @return degree of r
+ */
+degree mp_product(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m)
+{
+    polynomial p, q;
+    degree dp, dq;
+
+    if ((n2 - n1) % 2 != 0)
+    {
+        fprintf(stderr,"Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (n2 - n1 == 2)
+    {
+        p[0] = mod(-x[n1], m); p[1] = 1;
+        q[0] = mod(-x[n1 + 1], m); q[1] = 1;
+        dp = dq = 1;
+    }
+    else
+    {
+        dp = mp_product(x, n1, n2 / 2, p, m);
+        dq = mp_product(x, n2 / 2, n2, q, m);
+    }
+
+    return mp_mul(p, dp, q, dq, r, m);
+}
+
+/**
  * Derivate a polynomial p in Fm[x].
  * 
  * @param p polynomial
@@ -388,6 +424,96 @@ degree mp_derivate(const polynomial p, degree dp, polynomial r, modulus m)
     for (i = dr; i > 0; i--)
     {
         if (r[i] != 0)
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+/**
+ * Computes the Lagrange basis polynomial li.
+ * 
+ * @param x points
+ * @param n number of points
+ * @param i index of xi
+ * @param l Lagrange basis polynomial
+ * @param m modulus
+ * @return degree of li
+ */
+degree mp_lagrange_basis(const integer* x, unsigned int n, unsigned int i, polynomial l, modulus m)
+{
+    int j;
+    polynomial p, q;
+    degree dl, dp, dq;
+
+    /* Init l */
+    l[0] = 1; dl = 0;
+
+    /* Calculate product */
+    dp = 1;
+    for (j = 0; j < n; j++)
+    {
+        if (j != i)
+        {
+            p[0] = mi_div(mod(-x[j], m), mi_sub(x[i], x[j], m), m);
+            p[1] = mi_div(1, mi_sub(x[i], x[j], m), m);
+            dq = mp_mul(l, dl, p, dp, q, m);
+            dl = p_copy(q, dq, l);
+        }
+    }
+
+    /* Calculate degree dl */
+    for (j = dl; j > 0; j--)
+    {
+        if (l[j] != 0)
+        {
+            return j;
+        }
+    }
+    return 0;
+}
+
+/**
+ * Computes the Lagrange polynomial from a set of points (x, y).
+ * 
+ * @param x points
+ * @param y points
+ * @param n number of points
+ * @param L Lagrange polynomial
+ * @param m modulus
+ * @return degree of L
+ */
+degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n, polynomial L, modulus m)
+{
+    int i, k;
+    polynomial l, p;
+    degree dL, dl, dp;
+
+    /* Init L */
+    L[0] = 0; dL = 0;
+
+    /* Calculate sum */
+    for (i = 0; i < n; i++)
+    {
+        /* Calculate Lagrange basis polynomial */
+        dl = mp_lagrange_basis(x, n, i, l, m);
+
+        /* Multiply li with yi */
+        for (k = 0; k <= dl; k++)
+        {
+            l[k] = mi_mul(y[i], l[k], m);
+        }
+
+        /* Add to the sum */
+        dp = mp_add(L, dL, l, dl, p, m);
+        dL = p_copy(p, dp, L);
+    }
+
+    /* Calculate degree dL */
+    for (i = dL; i > 0; i--)
+    {
+        if (L[i] != 0)
         {
             return i;
         }

@@ -13,9 +13,23 @@ degree mp_mul(const polynomial p, degree dp, const polynomial q, degree dq, poly
 degree mp_div(const polynomial p, degree dp, const polynomial d, degree dd, polynomial q, modulus m);
 degree mp_mod(const polynomial p, degree dp, const polynomial d, degree dd, polynomial r, modulus m);
 
+/* Evaluation */
+
 integer mp_eval(const polynomial p, degree dp, integer x, modulus m);
 integer mp_horner(const polynomial p, degree dp, integer x, modulus m);
-void mp_horner_multipoint(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
-void mp_fast_multipoint_eval(const polynomial p, degree dp, integer *x, integer *y, unsigned int n, modulus m);
+void mp_horner_multipoint(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m);
+void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m);
+
+/* Product */
+
 degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m);
+degree mp_product(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m);
+
+/* Derivation */
+
 degree mp_derivate(const polynomial p, degree dp, polynomial r, modulus m);
+
+/* Interpolation */
+
+degree mp_lagrange_basis(const integer* x, unsigned int n, unsigned int i, polynomial L, modulus m);
+degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n, polynomial L, modulus m);
