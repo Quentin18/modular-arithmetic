@@ -182,7 +182,7 @@ degree mp_div(const polynomial p, degree dp, const polynomial d, degree dd, poly
     /* Case zero polynomial */
     if (dq < 0)
     {
-        r[0] = 0;
+        q[0] = 0;
         return 0;
     }
 
