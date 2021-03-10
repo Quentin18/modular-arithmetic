@@ -138,6 +138,28 @@ P(3) = 3
 P(4) = 6
 ```
 
+- **euclideanDivisionPoly.out** : division euclidienne de polynômes à coefficients dans Z/mZ. Exemple :
+```
+== Euclidean division of polynomials ==
+Degree of P: 4
+P[0] = 9
+P[1] = 1
+P[2] = 4
+P[3] = 7
+P[4] = 1
+Degree of D: 3
+D[0] = 2
+D[1] = 1
+D[2] = 1
+D[3] = 10
+Modulus: 11
+P = X^4 + 7 X^3 + 4 X^2 + X + 9
+D = 10 X^3 + X^2 + X + 2
+== Results ==
+Q = 10 X + 3
+R = 2 X^2 + 3
+```
+
 ## Algorithmes
 
 - [x] [Algorithme d'Euclide étendu](https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide_%C3%A9tendu) (pour les entiers et les polynômes)
