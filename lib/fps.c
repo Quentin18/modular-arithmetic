@@ -12,7 +12,7 @@
  * @param n precision
  * @param name name of s
  */
-void fps_print(const fps p, prec n, char *name)
+void fps_print(const fps s, prec n, char *name)
 {
     int i;
     integer v;
@@ -24,18 +24,18 @@ void fps_print(const fps p, prec n, char *name)
     }
     for (i = 0; i < n; i++)
     {
-        if (p[i] == 0)
+        if (s[i] == 0)
         {
             continue;
         }
-        if (p[i] < 0)
+        if (s[i] < 0)
         {
-            v = -p[i];
+            v = -s[i];
             printf(" -");
         }
         else
         {
-            v = p[i];
+            v = s[i];
             if (i != 0)
             {
                 printf(" +");
@@ -54,7 +54,14 @@ void fps_print(const fps p, prec n, char *name)
             printf(" z");
         }
     }
-    printf(" + O(z^%d)\n", n);
+    if (n == 1)
+    {
+        printf(" + O(z)\n");
+    }
+    else
+    {
+        printf(" + O(z^%d)\n", n);
+    }
 }
 
 /**
