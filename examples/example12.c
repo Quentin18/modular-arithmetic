@@ -16,6 +16,7 @@ int main()
     modulus m = 7;
 
     fps_print(s, n, "S");
+    printf("S invertible? -> %d\n", fps_is_invertible(s));
     fps_newton_inverse(s, n, u, m);
 
     return 0;

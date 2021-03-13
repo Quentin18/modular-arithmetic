@@ -65,6 +65,17 @@ void fps_print(const fps s, prec n, char *name)
 }
 
 /**
+ * Returns 1 if the formal power series s is invertible (if s0 != 0), 0 else.
+ * 
+ * @param s fps
+ * @return 1 if the fps is invertible, 0 else
+ */
+int fps_is_invertible(const fps s)
+{
+    return s[0] == 0 ? 0 : 1;
+}
+
+/**
  * Inverts a formal power series using the Newton's method.
  * 
  * @param s truncated fps in precision n
