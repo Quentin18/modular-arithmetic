@@ -4,7 +4,13 @@ Implémentation de l'arithmétique modulaire pour les entiers et les polynômes.
 
 ## Librairie
 
-Le dossier `lib` contient le code de la librairie statique `libmod` qui est générée avec le makefile.
+Le répertoire `lib` contient le code de la librairie statique `libmod`. Pour compiler la librairie depuis la racine :
+```
+make lib/libmod.a
+```
+
+### Arithmétiques
+
 Quatre arithmétiques différentes sont implémentées :
 
 - [x] `integer` : arithmétique d'entiers
@@ -22,20 +28,48 @@ La librairie définit les quatre types suivants :
 - `polynomial` : polynôme d'entiers
 - `degree` : degré d'un polynôme
 
+### Séries formelles
+
+Les fichiers `fps` définissent des fonctions pour manipuler les séries formelles.
+Le type `fps` permet de définir une série formelle tronquée, et `prec` renseigne sa précision.
+
 ## Exemples
 
-Le dossier `examples` contient des exemples d'utilisation de la librairie `libmod`. Pour compiler un exemple :
+Le répertoire `examples` contient des exemples d'utilisation de la librairie `libmod`.
+- Pour compiler un exemple :
 ```
 cd examples
 make example1.out
 ```
-La commande `make` permet aussi de tout compiler. Le README du dossier `examples` montre le rôle de chaque exemple.
+- Pour compiler tous les exemples :
+```
+cd examples
+make
+```
+Le README du répertoire `examples` montre le rôle de chaque exemple.
 
 ## Exécutables
 
-Le dossier `src` contient les fonctions principales pour générer des exécutables utilisant la librairie `libmod`.
+Le répertoire `src` contient les fonctions principales pour générer des exécutables utilisant la librairie `libmod`.
 
-Les exécutables suivants sont créés avec la commande `make`.
+### Compilation
+
+- Pour compiler tous les exécutables :
+```
+make
+```
+- Pour compiler l'exécutable **extendedGcdInt.out** :
+```
+cd src
+make ../extendedGcdInt.out
+```
+Protocole similaire pour tous les exécutables ci-dessous.
+
+Les exécutables créés se trouvent à la racine du répertoire.
+
+### Description
+
+Voici la liste des exécutables :
 
 - **extendedGcdInt.out** : algorithme d'Euclide étendu pour les entiers. Exemple ([source](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example)) :
 ```
@@ -184,6 +218,8 @@ L(4) = 6
 
 ## Algorithmes
 
+Voici la liste des algorithmes implémentés (ou à faire) :
+
 - [x] [Algorithme d'Euclide étendu](https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide_%C3%A9tendu) (pour les entiers et les polynômes)
 - [x] [Méthode de Ruffini-Horner](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Ruffini-Horner)
 - [ ] Évaluation multipoint rapide
@@ -194,7 +230,7 @@ L(4) = 6
 
 ## Documentation
 
-La documentation peut être générée avec la commande :
+La documentation peut être générée par `doxygen` avec la commande :
 ```
 make docs
 ```
