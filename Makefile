@@ -1,9 +1,12 @@
 LIB_DIR = lib
 SRC_DIR = src
+LIB = $(LIB_DIR)/libmod.a
 
-all:
-	cd $(LIB_DIR) && make
+all: $(LIB)
 	cd $(SRC_DIR) && make
+
+$(LIB):
+	cd $(LIB_DIR) && make
 
 # Docs
 docs:
