@@ -480,6 +480,53 @@ polytree* mp_subproduct_tree(const integer* x, unsigned int n, modulus m)
 }
 
 /**
+ * Creates the remainder tree recursively.
+ * 
+ * @param node node of the subproduct tree
+ * @param p polynomial
+ * @param dp degree of p
+ * @param m modulus
+ * @return node
+ */
+polynode* mp_remainder_node(const polynode* node, const polynomial p, degree dp, modulus m)
+{
+    polynode* n;
+
+    if (node == NULL)
+    {
+        return NULL;
+    }
+
+    /* Create node */
+    n = pnode_new();
+
+    /* Calculate polynomial */
+    n->d = mp_mod(p, dp, node->p, node->d, n->p, m);
+
+    /* Recursive call */
+    n->left = mp_remainder_node(node->left, n->p, n->d, m);
+    n->right = mp_remainder_node(node->right, n->p, n->d, m);
+
+    return n;
+}
+
+/**
+ * Creates the remainder tree.
+ * 
+ * @param node node of the subproduct tree
+ * @param p polynomial
+ * @param dp degree of p
+ * @param m modulus
+ * @return node
+ */
+polytree* mp_remainder_tree(const polytree* tree, const polynomial p, degree dp, modulus m)
+{
+    polytree* t = ptree_new();
+    t->root = mp_remainder_node(tree->root, p, dp, m);
+    return t;
+}
+
+/**
  * Evaluate a polynomial p at n points using fast evaluation.
  * 
  * @param p polynomial

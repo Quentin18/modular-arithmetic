@@ -33,6 +33,8 @@ degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n
 
 polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2, modulus m);
 polytree* mp_subproduct_tree(const integer* x, unsigned int n, modulus m);
+polynode* mp_remainder_node(const polynode* node, const polynomial p, degree dp, modulus m);
+polytree* mp_remainder_tree(const polytree* tree, const polynomial p, degree dp, modulus m);
 
 /* Fast algorithms */
 
