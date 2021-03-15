@@ -33,3 +33,8 @@ void pnode_print(const polynode* node);
 void ptree_print(const polytree* tree);
 void pnode_get_leaves_remainder(const polynode* node, integer *y, unsigned int *i);
 void ptree_get_leaves_remainder(const polytree* tree, integer *y);
+
+/* Export */
+
+void pnode_write(const polynode* node, FILE *file, unsigned int *i);
+void ptree_export(const polytree* tree, const char* filename, const char* title);

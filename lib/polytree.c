@@ -2,6 +2,7 @@
  * @file polytree.c
  * @brief Binary trees for polynomials
  */
+#include <stdio.h>
 #include <stdlib.h>
 #include "polytree.h"
 
@@ -93,7 +94,7 @@ void ptree_print(const polytree* tree)
 }
 
 /**
- * Get values of leaves in a remainder tree recursively.
+ * Gets values of leaves in a remainder tree recursively.
  * 
  * @param node node
  * @param y leaves values
@@ -113,7 +114,7 @@ void pnode_get_leaves_remainder(const polynode* node, integer *y, unsigned int *
 }
 
 /**
- * Get values of leaves in a remainder tree.
+ * Gets values of leaves in a remainder tree.
  * 
  * @param tree tree
  * @param y leaves values
@@ -122,4 +123,63 @@ void ptree_get_leaves_remainder(const polytree* tree, integer *y)
 {
     unsigned int i = 0;
     pnode_get_leaves_remainder(tree->root, y, &i);
+}
+
+/**
+ * Writes a node to a dot file.
+ * 
+ * @param node node
+ * @param file file
+ * @param i node number
+ */
+void pnode_write(const polynode* node, FILE *file, unsigned int *i)
+{
+    /* Number of the node */
+    unsigned int num = *i;
+
+    fprintf(file, "\tn%u [label=\"", num);
+    p_write(node->p, node->d, file);
+    fprintf(file, "\"];\n");
+    if (node->left != NULL)
+    {
+        fprintf(file, "\tn%u -- n%u;\n", num, ++(*i));
+        pnode_write(node->left, file, i);
+    }
+    if (node->right != NULL)
+    {
+        fprintf(file, "\tn%u -- n%u;\n", num, ++(*i));
+        pnode_write(node->right, file, i);
+    }
+}
+
+/**
+ * Exports a tree of polynomials to dot format.
+ * 
+ * @param tree tree
+ * @param filename filename
+ * @param title title
+ */
+void ptree_export(const polytree* tree, const char* filename, const char* title)
+{
+    unsigned int i = 0;
+
+    /* Create file */
+    FILE *file = fopen(filename, "w");
+    if (file == NULL)
+    {
+        fprintf(stderr, "Mod Error: cannot open file %s. Exit.\n", filename);
+        exit(1);
+    }
+
+    /* Init graph */
+    fprintf(file, "graph tree {\n\tnode [shape=box];\n");
+
+    /* Write tree */
+    pnode_write(tree->root, file, &i);
+
+    /* Add title and close graph */
+    fprintf(file, "\tlabel=\"%s\";\n}\n", title);
+
+    /* Close file */
+    fclose(file);
 }
