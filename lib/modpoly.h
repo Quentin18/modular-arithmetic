@@ -35,7 +35,10 @@ polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2,
 polytree* mp_subproduct_tree(const integer* x, unsigned int n, modulus m);
 polynode* mp_remainder_node(const polynode* node, const polynomial p, degree dp, modulus m);
 polytree* mp_remainder_tree(const polytree* tree, const polynomial p, degree dp, modulus m);
+polynode* mp_numerator_node(const polynode* node, const integer* leaves, unsigned int n1, unsigned int n2, modulus m);
+polytree* mp_numerator_tree(const polytree* tree, const integer* leaves, unsigned int n, modulus m);
 
 /* Fast algorithms */
 
 void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m);
+degree mp_fast_interpolation(const integer* x, const integer* y, unsigned int n, polynomial p, modulus m);

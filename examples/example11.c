@@ -23,7 +23,8 @@ int main()
 
     /* Interpolation */
 
-    dp = mp_lagrange_polynomial(x, y, n, p, m);
+    dp = mp_fast_interpolation(x, y, n, p, m);
+    /* dp = mp_lagrange_polynomial(x, y, n, p, m); */
 
     printf("Lagrange polynomial:\n");
     p_print(p, dp, "L");

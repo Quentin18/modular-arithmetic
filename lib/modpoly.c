@@ -517,12 +517,79 @@ polynode* mp_remainder_node(const polynode* node, const polynomial p, degree dp,
  * @param p polynomial
  * @param dp degree of p
  * @param m modulus
- * @return node
+ * @return tree
  */
 polytree* mp_remainder_tree(const polytree* tree, const polynomial p, degree dp, modulus m)
 {
     polytree* t = ptree_new();
     t->root = mp_remainder_node(tree->root, p, dp, m);
+    return t;
+}
+
+/**
+ * Creates the numerator tree recursively.
+ * 
+ * @param node node of the subproduct tree
+ * @param leaves values of the leaves
+ * @param n1 minimum index in leaves
+ * @param n2 maximum index in leaves
+ * @param m modulus
+ * @return node
+ */
+polynode* mp_numerator_node(const polynode* node, const integer* leaves, unsigned int n1, unsigned int n2, modulus m)
+{
+    polynode *n;
+    polynomial l, r;
+    degree dl, dr;
+
+    if ((n2 - n1) % 2 != 0)
+    {
+        fprintf(stderr, "Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Create node */
+    n = pnode_new();
+
+    if (n2 - n1 == 2)
+    {
+        /* Create leaves */
+        n->left = pnode_new();
+        n->left->p[0] = leaves[n1];
+        n->left->d = 0;
+
+        n->right = pnode_new();
+        n->right->p[0] = leaves[n1 + 1];
+        n->right->d = 0;
+    }
+    else
+    {
+        /* Resursive call */
+        n->left = mp_numerator_node(node->left, leaves, n1, n2 / 2, m);
+        n->right = mp_numerator_node(node->right, leaves, n2 / 2, n2, m);
+    }
+
+    /* Compute numerator */
+    dl = mp_mul(n->left->p, n->left->d, node->right->p, node->right->d, l, m);
+    dr = mp_mul(n->right->p, n->right->d, node->left->p, node->left->d, r, m);
+    n->d = mp_add(l, dl, r, dr, n->p, m);
+
+    return n;
+}
+
+/**
+ * Creates the numerator tree.
+ * 
+ * @param tree subproduct tree
+ * @param leaves values of the leaves
+ * @param n number of leaves
+ * @param m modulus
+ * @return tree
+ */
+polytree* mp_numerator_tree(const polytree* tree, const integer* leaves, unsigned int n, modulus m)
+{
+    polytree* t = ptree_new();
+    t->root = mp_numerator_node(tree->root, leaves, 0, n, m);
     return t;
 }
 
@@ -552,4 +619,56 @@ void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, in
     /* Free memory */
     ptree_free(s_tree);
     ptree_free(r_tree);
+}
+
+/**
+ * Computes the interpolation of a polynomial from a set of points (x, y).
+ * 
+ * @param x points
+ * @param y points
+ * @param n number of points
+ * @param p interpolation polynomial
+ * @param m modulus
+ * @return degree of p
+ */
+degree mp_fast_interpolation(const integer* x, const integer* y, unsigned int n, polynomial p, modulus m)
+{
+    unsigned int i;
+    polytree *s_tree, *r_tree, *n_tree;
+    polynomial ap;
+    degree dap, dp;
+
+    integer *z = malloc(n * sizeof(integer));
+
+    /* Subproduct tree */
+    s_tree = mp_subproduct_tree(x, n, m);
+
+    /* Derivate the root of the subproduct tree A */
+    dap = mp_derivate(s_tree->root->p, s_tree->root->d, ap, m);
+
+    /* Remainder tree of A' */
+    r_tree = mp_remainder_tree(s_tree, ap, dap, m);
+
+    /* Get leaves */
+    ptree_get_leaves_remainder(r_tree, z);
+
+    /* Calculate fractions */
+    for (i = 0; i < n; i++)
+    {
+        z[i] = mi_div(y[i], z[i], m);
+    }
+
+    /* Calculate numerator tree */
+    n_tree = mp_numerator_tree(s_tree, z, n, m);
+
+    /* Return root polynomial of the numerator tree */
+    dp = p_copy(n_tree->root->p, n_tree->root->d, p);
+
+    /* Free memory */
+    ptree_free(s_tree);
+    ptree_free(r_tree);
+    ptree_free(n_tree);
+    free(z);
+
+    return dp;
 }
