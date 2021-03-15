@@ -16,6 +16,6 @@ $(LIB):
 	cd $(LIB_DIR) && make
 
 clean:
-	rm -f *.out
+	rm -f *.out *.dot
 
 .PHONY: clean
