@@ -35,7 +35,9 @@ Le type `fps` permet de définir une série formelle tronquée, et `prec` rensei
 
 ### Arbres de polynômes
 
-Les fichiers `polytree` définissent les arbres de polynômes permettant l'implémentation des algorithmes rapides d'évaluation multipoint et d'interpolation.
+Les fichiers `polytree` définissent les arbres de polynômes permettant l'implémentation des algorithmes rapides suivants pour les polynômes à coefficients dans Z/mZ :
+- `mp_fast_multipoint_eval` : évaluation multipoint rapide
+- `mp_fast_interpolation` : interpolation rapide
 
 ## Exemples
 
@@ -228,7 +230,7 @@ Voici la liste des algorithmes implémentés (ou à faire) :
 - [x] [Méthode de Ruffini-Horner](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Ruffini-Horner)
 - [x] Évaluation multipoint rapide
 - [x] [Interpolation lagrangienne](https://fr.wikipedia.org/wiki/Interpolation_lagrangienne)
-- [ ] Interpolation rapide
+- [x] Interpolation rapide
 - [ ] [Algorithme de Wiedemann](https://en.wikipedia.org/wiki/Block_Wiedemann_algorithm)
 - [ ] [Algorithme de remontée de Hensel](https://fr.wikipedia.org/wiki/Lemme_de_Hensel)
 
