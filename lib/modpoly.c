@@ -513,7 +513,7 @@ polynode* mp_remainder_node(const polynode* node, const polynomial p, degree dp,
 /**
  * Creates the remainder tree.
  * 
- * @param node node of the subproduct tree
+ * @param tree subproduct tree
  * @param p polynomial
  * @param dp degree of p
  * @param m modulus

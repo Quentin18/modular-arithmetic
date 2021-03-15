@@ -11,9 +11,10 @@
  */
 typedef struct polynode
 {
-    polynomial p;
-    degree d;
-    struct polynode *left, *right;
+    polynomial p;           /**< Polynomial */
+    degree d;               /**< Degree of the polynomial */
+    struct polynode *left;  /**< Left child */
+    struct polynode *right; /**< Right child */
 } polynode;
 
 /**
@@ -21,7 +22,7 @@ typedef struct polynode
  */
 typedef struct polytree
 {
-    polynode* root;
+    polynode* root;         /**< Root node of the tree */
 } polytree;
 
 polynode* pnode_new();
