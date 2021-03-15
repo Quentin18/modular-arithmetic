@@ -39,6 +39,10 @@ Les fichiers `polytree` définissent les arbres de polynômes permettant l'impl�
 - `mp_fast_multipoint_eval` : évaluation multipoint rapide
 - `mp_fast_interpolation` : interpolation rapide
 
+Les arbres peuvent être exportés au format dot et visualisés avec [Graphviz](https://graphviz.org/). Exemples :
+![subproduct tree](img/s_tree.png)
+![remainder tree](img/r_tree.png)
+
 ## Exemples
 
 Le répertoire `examples` contient des exemples d'utilisation de la librairie `libmod`.
