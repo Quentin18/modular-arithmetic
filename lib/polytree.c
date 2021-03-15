@@ -66,18 +66,34 @@ void ptree_free(polytree* tree)
  * Prints a node.
  * 
  * @param node node
+ * @param space number of spaces before printing polynomial
  */
-void pnode_print(const polynode* node)
+void pnode_print(const polynode* node, unsigned int space)
 {
-    if (node->left != NULL)
+    unsigned int i;
+
+    if (node == NULL)
     {
-        pnode_print(node->left);
+        return;
     }
-    if (node->right != NULL)
+
+    /* Increase distance between levels */
+    space += 30;
+
+    /* Process right child first */
+    pnode_print(node->right, space);
+
+    /* Print current node after space */
+    printf("\n");
+    for (i = 30; i < space; i++)
     {
-        pnode_print(node->right);
+        printf(" ");
     }
-    p_print(node->p, node->d, "P");
+    p_write(node->p, node->d, stdout);
+    printf("\n");
+
+    /* Process left child */
+    pnode_print(node->left, space);
 }
 
 /**
@@ -89,8 +105,8 @@ void ptree_print(const polytree* tree)
 {
     if (tree->root != NULL)
     {
-        pnode_print(tree->root);
-    }    
+        pnode_print(tree->root, 0);
+    }
 }
 
 /**

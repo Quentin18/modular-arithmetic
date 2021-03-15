@@ -29,7 +29,7 @@ polynode* pnode_new();
 polytree* ptree_new();
 void pnode_free(polynode* node);
 void ptree_free(polytree* tree);
-void pnode_print(const polynode* node);
+void pnode_print(const polynode* node, unsigned int space);
 void ptree_print(const polytree* tree);
 void pnode_get_leaves_remainder(const polynode* node, integer *y, unsigned int *i);
 void ptree_get_leaves_remainder(const polytree* tree, integer *y);
