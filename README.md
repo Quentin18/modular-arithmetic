@@ -33,6 +33,10 @@ La librairie définit les quatre types suivants :
 Les fichiers `fps` définissent des fonctions pour manipuler les séries formelles.
 Le type `fps` permet de définir une série formelle tronquée, et `prec` renseigne sa précision.
 
+### Arbres de polynômes
+
+Les fichiers `polytree` définissent les arbres de polynômes permettant l'implémentation des algorithmes rapides d'évaluation multipoint et d'interpolation.
+
 ## Exemples
 
 Le répertoire `examples` contient des exemples d'utilisation de la librairie `libmod`.
@@ -222,7 +226,7 @@ Voici la liste des algorithmes implémentés (ou à faire) :
 
 - [x] [Algorithme d'Euclide étendu](https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide_%C3%A9tendu) (pour les entiers et les polynômes)
 - [x] [Méthode de Ruffini-Horner](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Ruffini-Horner)
-- [ ] Évaluation multipoint rapide
+- [x] Évaluation multipoint rapide
 - [x] [Interpolation lagrangienne](https://fr.wikipedia.org/wiki/Interpolation_lagrangienne)
 - [ ] Interpolation rapide
 - [ ] [Algorithme de Wiedemann](https://en.wikipedia.org/wiki/Block_Wiedemann_algorithm)
