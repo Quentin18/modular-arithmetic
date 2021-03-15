@@ -291,109 +291,6 @@ void mp_horner_multipoint(const polynomial p, degree dp, const integer *x, integ
 }
 
 /**
- * Evaluate a polynomial p at n points using fast evaluation.
- * 
- * @param p polynomial
- * @param dp degree of p
- * @param x points
- * @param y p(x)
- * @param n number of points
- * @param m modulus
- */
-void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m)
-{
-    /* TODO to modify */
-    int i;
-    polynomial r;
-    degree dd = 1;
-    polynomial d = {0, 1};
-    for (i = 0; i < n; i++)
-    {
-        d[0] = mod(-x[i], m);
-        mp_mod(p, dp, d, dd, r, m);
-        y[i] = r[0];
-    }
-}
-
-/**
- * Print the subproduct tree recursively and computes the product (x - xi) in r.
- * 
- * @param x points
- * @param n1 minimum index in x
- * @param n2 maximum index in x
- * @param r product of (x - xi)
- * @param m modulus
- * @return degree of r
- */
-degree mp_subproduct_tree(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m)
-{
-    polynomial p, q;
-    degree dp, dq;
-    char pname[30], qname[30];
-
-    if ((n2 - n1) % 2 != 0)
-    {
-        fprintf(stderr,"Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (n2 - n1 == 2)
-    {
-        p[0] = mod(-x[n1], m); p[1] = 1;
-        q[0] = mod(-x[n1 + 1], m); q[1] = 1;
-        dp = dq = 1;
-    }
-    else
-    {
-        dp = mp_subproduct_tree(x, n1, n2 / 2, p, m);
-        dq = mp_subproduct_tree(x, n2 / 2, n2, q, m);
-    }
-
-    sprintf(pname, "P%d%d", n1, n2);
-    sprintf(qname, "Q%d%d", n1, n2);
-    p_print(p, dp, pname);
-    p_print(q, dq, qname);
-
-    return mp_mul(p, dp, q, dq, r, m);
-}
-
-/**
- * Computes recursively the product r = (x - x[n1])(x - x[n1 + 1])...(x - x[n2]).
- * 
- * @param x points
- * @param n1 minimum index in x
- * @param n2 maximum index in x
- * @param r product of (x - xi)
- * @param m modulus
- * @return degree of r
- */
-degree mp_product(const integer* x, unsigned int n1, unsigned int n2, polynomial r, modulus m)
-{
-    polynomial p, q;
-    degree dp, dq;
-
-    if ((n2 - n1) % 2 != 0)
-    {
-        fprintf(stderr,"Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (n2 - n1 == 2)
-    {
-        p[0] = mod(-x[n1], m); p[1] = 1;
-        q[0] = mod(-x[n1 + 1], m); q[1] = 1;
-        dp = dq = 1;
-    }
-    else
-    {
-        dp = mp_product(x, n1, n2 / 2, p, m);
-        dq = mp_product(x, n2 / 2, n2, q, m);
-    }
-
-    return mp_mul(p, dp, q, dq, r, m);
-}
-
-/**
  * Derivate a polynomial p in Fm[x].
  * 
  * @param p polynomial
@@ -519,4 +416,90 @@ degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n
         }
     }
     return 0;
+}
+
+/**
+ * Creates the subproduct tree recursively.
+ * 
+ * @param x points
+ * @param n1 minimum index in x
+ * @param n2 maximum index in x
+ * @param m modulus
+ * @return node
+ */
+polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2, modulus m)
+{
+    polynode *n;
+
+    if ((n2 - n1) % 2 != 0)
+    {
+        fprintf(stderr, "Mod Error: n2 - n1 must be a multiple of 2. Exit.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Create node */
+    n = pnode_new();
+
+    if (n2 - n1 == 2)
+    {
+        /* Create leaves */
+        n->left = pnode_new();
+        n->left->p[0] = mod(-x[n1], m); n->left->p[1] = 1;
+        n->left->d = 1;
+
+        n->right = pnode_new();
+        n->right->p[0] = mod(-x[n1 + 1], m); n->right->p[1] = 1;
+        n->right->d = 1;
+    }
+    else
+    {
+        /* Resursive call */
+        n->left = mp_subproduct_node(x, n1, n2 / 2, m);
+        n->right = mp_subproduct_node(x, n2 / 2, n2, m);
+    }
+
+    /* Multiply polynomials */
+    n->d = mp_mul(n->left->p, n->left->d, n->right->p, n->right->d, n->p, m);
+
+    return n;
+}
+
+/**
+ * Creates the subproduct tree.
+ * 
+ * @param x points
+ * @param n number of points
+ * @param m modulus
+ * @return tree
+ */
+polytree* mp_subproduct_tree(const integer* x, unsigned int n, modulus m)
+{
+    polytree* tree = ptree_new();
+    tree->root = mp_subproduct_node(x, 0, n, m);
+    return tree;
+}
+
+/**
+ * Evaluate a polynomial p at n points using fast evaluation.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param x points
+ * @param y p(x)
+ * @param n number of points
+ * @param m modulus
+ */
+void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m)
+{
+    /* TODO to modify */
+    int i;
+    polynomial r;
+    degree dd = 1;
+    polynomial d = {0, 1};
+    for (i = 0; i < n; i++)
+    {
+        d[0] = mod(-x[i], m);
+        mp_mod(p, dp, d, dd, r, m);
+        y[i] = r[0];
+    }
 }

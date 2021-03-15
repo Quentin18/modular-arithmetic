@@ -10,17 +10,15 @@
  */
 int main()
 {
-    polynomial r;
-    degree dr;
-    modulus m;
+    polytree* tree;
 
     integer x[] = {1, 2, 4, 8};
     unsigned int n = 4;
-    m = 11;
+    modulus m = 11;
 
-    dr = mp_subproduct_tree(x, 0, n, r, m);
-
-    p_print(r, dr, "P");
+    tree = mp_subproduct_tree(x, n, m);
+    ptree_print(tree);
+    ptree_free(tree);
 
     return 0;
 }
