@@ -50,20 +50,19 @@ degree p_scan(polynomial p, char *name)
 }
 
 /**
- * Print a polynomial.
+ * Write a polynomial.
  * 
  * @param p polynomial
  * @param dp degree of p
- * @param name name of p
+ * @param file file
  */
-void p_print(const polynomial p, degree dp, char *name)
+void p_write(const polynomial p, degree dp, FILE *file)
 {
     int i;
     integer v;
-    printf("%s =", name);
     if (dp == 0)
     {
-        printf(" %d\n", p[0]);
+        fprintf(file, " %d", p[0]);
         return;
     }
     for (i = dp; i >= 0; i--)
@@ -75,29 +74,42 @@ void p_print(const polynomial p, degree dp, char *name)
         if (p[i] < 0)
         {
             v = -p[i];
-            printf(" -");
+            fprintf(file, " -");
         }
         else
         {
             v = p[i];
             if (i != dp)
             {
-                printf(" +");
+                fprintf(file, " +");
             }
         }
         if (v != 1 || i == 0)
         {
-            printf(" %d", v);
+            fprintf(file, " %d", v);
         }
         if (i > 1)
         {
-            printf(" X^%d", i);
+            fprintf(file, " X^%d", i);
         }
         else if (i == 1)
         {
-            printf(" X");
+            fprintf(file, " X");
         }
     }
+}
+
+/**
+ * Print a polynomial.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param name name of p
+ */
+void p_print(const polynomial p, degree dp, char *name)
+{
+    printf("%s =", name);
+    p_write(p, dp, stdout);
     printf("\n");
 }
 

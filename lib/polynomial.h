@@ -22,6 +22,7 @@ typedef integer polynomial[MAX_DEGREE + 1];
 typedef unsigned int degree;
 
 degree p_scan(polynomial p, char *name);
+void p_write(const polynomial p, degree dp, FILE *file);
 void p_print(const polynomial p, degree dp, char *name);
 degree p_copy(const polynomial p, degree dp, polynomial r);
 integer p_lead(const polynomial p, degree dp);
