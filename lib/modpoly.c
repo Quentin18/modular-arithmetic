@@ -538,15 +538,18 @@ polytree* mp_remainder_tree(const polytree* tree, const polynomial p, degree dp,
  */
 void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m)
 {
-    /* TODO to modify */
-    int i;
-    polynomial r;
-    degree dd = 1;
-    polynomial d = {0, 1};
-    for (i = 0; i < n; i++)
-    {
-        d[0] = mod(-x[i], m);
-        mp_mod(p, dp, d, dd, r, m);
-        y[i] = r[0];
-    }
+    polytree *s_tree, *r_tree;
+
+    /* Subproduct tree */
+    s_tree = mp_subproduct_tree(x, n, m);
+
+    /* Remainder tree */
+    r_tree = mp_remainder_tree(s_tree, p, dp, m);
+
+    /* Get leaves */
+    ptree_get_leaves_remainder(r_tree, y);
+
+    /* Free memory */
+    ptree_free(s_tree);
+    ptree_free(r_tree);
 }

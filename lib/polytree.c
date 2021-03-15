@@ -66,7 +66,7 @@ void ptree_free(polytree* tree)
  * 
  * @param node node
  */
-void pnode_print(polynode* node)
+void pnode_print(const polynode* node)
 {
     if (node->left != NULL)
     {
@@ -84,10 +84,42 @@ void pnode_print(polynode* node)
  * 
  * @param tree tree
  */
-void ptree_print(polytree* tree)
+void ptree_print(const polytree* tree)
 {
     if (tree->root != NULL)
     {
         pnode_print(tree->root);
     }    
+}
+
+/**
+ * Get values of leaves in a remainder tree recursively.
+ * 
+ * @param node node
+ * @param y leaves values
+ * @param i index
+ */
+void pnode_get_leaves_remainder(const polynode* node, integer *y, unsigned int *i)
+{
+    if (node->left == NULL && node->right == NULL)
+    {
+        y[(*i)++] = p_const(node->p);
+    }
+    else
+    {
+        pnode_get_leaves_remainder(node->left, y, i);
+        pnode_get_leaves_remainder(node->right, y, i);
+    }
+}
+
+/**
+ * Get values of leaves in a remainder tree.
+ * 
+ * @param tree tree
+ * @param y leaves values
+ */
+void ptree_get_leaves_remainder(const polytree* tree, integer *y)
+{
+    unsigned int i = 0;
+    pnode_get_leaves_remainder(tree->root, y, &i);
 }
