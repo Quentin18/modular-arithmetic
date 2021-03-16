@@ -36,3 +36,7 @@ integer p_horner(const polynomial p, degree dp, integer x);
 /* Derivate */
 
 degree p_derivate(const polynomial p, degree dp, polynomial r);
+
+/* Test */
+
+int p_are_equal(const polynomial p, degree dp, const polynomial q, degree dq);

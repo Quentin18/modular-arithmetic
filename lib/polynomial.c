@@ -220,3 +220,34 @@ degree p_derivate(const polynomial p, degree dp, polynomial r)
 
     return dr;
 }
+
+/**
+ * Return 1 if the polynomials p and q are equal, 0 else.
+ * 
+ * @param p first polynomial
+ * @param dp degree of p
+ * @param q second polynomial
+ * @param dq degree of q
+ * @return p == q
+ */
+int p_are_equal(const polynomial p, degree dp, const polynomial q, degree dq)
+{
+    unsigned int i;
+
+    /* Test degree */
+    if (dp != dq)
+    {
+        return 0;
+    }
+
+    /* Test coefficients */
+    for (i = 0; i <= dp; i++)
+    {
+        if (p[i] != q[i])
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
