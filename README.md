@@ -251,6 +251,11 @@ Pour supprimer la documentation :
 make cleandocs
 ```
 
+## Tests
+
+Le répertoire `tests` contient des tests unitaires de la librairie `libmod`.
+Ces tests sont réalisés par le framework [MinUnit](https://github.com/siu/minunit).
+
 ## Auteur
 
 [Quentin Deschamps](mailto:quentindeschamps18@gmail.com)
