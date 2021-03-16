@@ -5,7 +5,6 @@
  * Source: https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example
  */
 #include <stdio.h>
-#include "integer.h"
 #include "extendedGcdInt.h"
 
 /**
