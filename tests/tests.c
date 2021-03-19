@@ -14,11 +14,18 @@
 MU_TEST(test_extended_gcd_int)
 {
     integer a, b, r, u, v;
+
     a = 240; b = 46;
     r = extended_gcd_int(a, b, &u, &v);
 	mu_check(r == 2);
 	mu_check(u == -9);
 	mu_check(v = 47);
+
+	a = 251; b = 207;
+    r = extended_gcd_int(a, b, &u, &v);
+	mu_check(r == 1);
+	mu_check(u == 80);
+	mu_check(v = -97);
 }
 
 /* Modular arithmetic for integers */
