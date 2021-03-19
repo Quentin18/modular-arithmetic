@@ -1,12 +1,12 @@
 /**
  * @file example8.c
- * @brief Example 8: Advanced operations with polynomial arithmetic in Fm[x]/P
+ * @brief Example 8: Advanced operations with polynomial arithmetic in Fm[x]/(P)
  */
 #include <stdio.h>
 #include "modpolyp.h"
 
 /**
- * Advanced operations with polynomial arithmetic in Fm[x]/P.
+ * Advanced operations with polynomial arithmetic in Fm[x]/(P).
  */
 int main()
 {

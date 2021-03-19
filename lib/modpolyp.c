@@ -1,6 +1,6 @@
 /**
  * @file modpolyp.c
- * @brief Polynomial arithmetic implementation in Fm[x]/P
+ * @brief Polynomial arithmetic implementation in Fm[x]/(P)
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,13 +9,13 @@
 #include "extendedGcdPoly.h"
 
 /**
- * Computes r = (p + q) in Fm[x]/P.
+ * Computes r = (p + q) in Fm[x]/(P).
  * 
  * @param p first polynomial
  * @param dp degree of p
  * @param q second polynomial
  * @param dq degree of q
- * @param r polynomial (p + q) in Fm[x]/P
+ * @param r polynomial (p + q) in Fm[x]/(P)
  * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
@@ -31,13 +31,13 @@ degree mpp_add(const polynomial p, degree dp, const polynomial q, degree dq, pol
 }
 
 /**
- * Computes r = (p - q) in Fm[x]/P.
+ * Computes r = (p - q) in Fm[x]/(P).
  * 
  * @param p first polynomial
  * @param dp degree of p
  * @param q second polynomial
  * @param dq degree of q
- * @param r polynomial (p - q) in Fm[x]/P
+ * @param r polynomial (p - q) in Fm[x]/(P)
  * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
@@ -53,13 +53,13 @@ degree mpp_sub(const polynomial p, degree dp, const polynomial q, degree dq, pol
 }
 
 /**
- * Computes r = (p * q) in Fm[x]/P.
+ * Computes r = (p * q) in Fm[x]/(P).
  * 
  * @param p first polynomial
  * @param dp degree of p
  * @param q second polynomial
  * @param dq degree of q
- * @param r polynomial (p * q) in Fm[x]/P
+ * @param r polynomial (p * q) in Fm[x]/(P)
  * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
@@ -75,11 +75,11 @@ degree mpp_mul(const polynomial p, degree dp, const polynomial q, degree dq, pol
 }
 
 /**
- * Computes r = p^-1 in Fm[x]/P.
+ * Computes r = p^-1 in Fm[x]/(P).
  *
  * @param p polynomial
  * @param dp degree of p
- * @param r polynomial p^-1 in Fm[x]/P
+ * @param r polynomial p^-1 in Fm[x]/(P)
  * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
@@ -115,13 +115,13 @@ degree mpp_inv(const polynomial p, degree dp, polynomial r, modulus m, const pol
 }
 
 /**
- * Computes r = (p / q) in Fm[x]/P.
+ * Computes r = (p / q) in Fm[x]/(P).
  * 
  * @param p first polynomial
  * @param dp degree of p
  * @param q second polynomial
  * @param dq degree of q
- * @param r polynomial (p / q) in Fm[x]/P
+ * @param r polynomial (p / q) in Fm[x]/(P)
  * @param m modulus for coefficients
  * @param P modulus polynomial
  * @param dP degree of P
