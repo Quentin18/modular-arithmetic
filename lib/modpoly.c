@@ -430,6 +430,7 @@ degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n
 polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2, modulus m)
 {
     polynode *n;
+    printf("%d %d\n", n1, n2);
 
     if ((n2 - n1) % 2 != 0)
     {
@@ -454,8 +455,8 @@ polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2,
     else
     {
         /* Resursive call */
-        n->left = mp_subproduct_node(x, n1, n2 / 2, m);
-        n->right = mp_subproduct_node(x, n2 / 2, n2, m);
+        n->left = mp_subproduct_node(x, n1, n2 - (n2 - n1) / 2, m);
+        n->right = mp_subproduct_node(x, n2 - (n2 - n1) / 2, n2, m);
     }
 
     /* Multiply polynomials */
@@ -565,8 +566,8 @@ polynode* mp_numerator_node(const polynode* node, const integer* leaves, unsigne
     else
     {
         /* Resursive call */
-        n->left = mp_numerator_node(node->left, leaves, n1, n2 / 2, m);
-        n->right = mp_numerator_node(node->right, leaves, n2 / 2, n2, m);
+        n->left = mp_numerator_node(node->left, leaves, n1, n2 - (n2 - n1) / 2, m);
+        n->right = mp_numerator_node(node->right, leaves, n2 - (n2 - n1) / 2, n2, m);
     }
 
     /* Compute numerator */
