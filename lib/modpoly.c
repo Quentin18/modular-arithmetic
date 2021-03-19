@@ -430,7 +430,6 @@ degree mp_lagrange_polynomial(const integer* x, const integer* y, unsigned int n
 polynode* mp_subproduct_node(const integer* x, unsigned int n1, unsigned int n2, modulus m)
 {
     polynode *n;
-    printf("%d %d\n", n1, n2);
 
     if ((n2 - n1) % 2 != 0)
     {
