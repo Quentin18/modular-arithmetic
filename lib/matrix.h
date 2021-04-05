@@ -18,3 +18,5 @@ typedef unsigned int dim;
 
 matrix mat_create(dim nrows, dim ncols);
 void mat_delete(matrix m, dim nrows);
+matrix mat_zeros(dim nrows, dim ncols);
+void mat_print(const matrix m, dim nrows, dim ncols, char *name);

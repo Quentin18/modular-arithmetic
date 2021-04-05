@@ -56,3 +56,49 @@ void mat_delete(matrix m, dim nrows)
     }
     free(m);
 }
+
+/**
+ * Creates a matrix with zero coefficients.
+ * 
+ * @param nrows number of rows
+ * @param ncols number of columns
+ * @return matrix of zeros
+ */
+matrix mat_zeros(dim nrows, dim ncols)
+{
+    unsigned int i, j;
+    matrix m = mat_create(nrows, ncols);
+
+    for (i = 0; i < nrows; i++)
+    {
+        for (j = 0; j < ncols; j++)
+        {
+            m[i][j] = 0;
+        }
+    }
+
+    return m;
+}
+
+/**
+ * Prints a matrix.
+ * 
+ * @param m matrix
+ * @param nrows number of rows
+ * @param ncols number of columns
+ * @param name name of m
+ */
+void mat_print(const matrix m, dim nrows, dim ncols, char *name)
+{
+    unsigned int i, j;
+
+    printf("%s =\n", name);
+    for (i = 0; i < nrows; i++)
+    {
+        for (j = 0; j < ncols; j++)
+        {
+            printf("\t%d", m[i][j]);
+        }
+        printf("\n");
+    }
+}
