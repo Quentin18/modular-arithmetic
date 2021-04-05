@@ -5,6 +5,7 @@
 #pragma once
 
 #include "integer.h"
+#include "matrix.h"
 
 /**
  * Maximum degree for polynomials
@@ -40,3 +41,7 @@ degree p_derivate(const polynomial p, degree dp, polynomial r);
 /* Test */
 
 int p_are_equal(const polynomial p, degree dp, const polynomial q, degree dq);
+
+/* Resultant */
+
+matrix p_sylvester(const polynomial p, degree dp, const polynomial q, degree dq);

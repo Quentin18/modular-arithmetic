@@ -251,3 +251,41 @@ int p_are_equal(const polynomial p, degree dp, const polynomial q, degree dq)
 
     return 1;
 }
+
+/**
+ * Creates the Sylvester matrix of two polynomials p and q.
+ * 
+ * @param p first polynomial
+ * @param dp degree of p
+ * @param q second polynomial
+ * @param dq degree of q
+ * @return Sylvester matrix of p and q
+ */
+matrix p_sylvester(const polynomial p, degree dp, const polynomial q, degree dq)
+{
+    int i, j;
+
+    /* Create matrix */
+    dim d = dp + dq;
+    matrix s = mat_zeros(d, d);
+
+    /* First polynomial */
+    for (i = 0; i < d - dp; i++)
+    {
+        for (j = 0; j <= dp; j++)
+        {
+            s[i][i + j] = p[dp - j];
+        }
+    }
+
+    /* Second polynomial */
+    for (i = d - dp; i < d; i++)
+    {
+        for (j = 0; j <= dq; j++)
+        {
+            s[i][i - (d - dp) + j] = q[dq - j];
+        }
+    }
+
+    return s;
+}
