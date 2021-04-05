@@ -42,3 +42,7 @@ polytree* mp_numerator_tree(const polytree* tree, const integer* leaves, unsigne
 
 void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m);
 degree mp_fast_interpolation(const integer* x, const integer* y, unsigned int n, polynomial p, modulus m);
+
+/* Monic polynomial */
+
+degree mp_monic(const polynomial p, degree dp, polynomial r, modulus m);

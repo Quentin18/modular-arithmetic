@@ -672,3 +672,28 @@ degree mp_fast_interpolation(const integer* x, const integer* y, unsigned int n,
 
     return dp;
 }
+
+/**
+ * Computes the monic polynomial of a polynomial p in Fm[x].
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param r monic polynomial of p
+ * @param m modulus
+ * @return degree of r
+ */
+degree mp_monic(const polynomial p, degree dp, polynomial r, modulus m)
+{
+    int i;
+    integer inv;
+
+    /* Computes inverse of the leading coefficient */
+    inv = mi_inv(p_lead(p, dp), m);
+
+    for (i = 0; i <= dp; i++)
+    {
+        r[i] = mi_mul(p[i], inv, m);
+    }
+
+    return dp;
+}
