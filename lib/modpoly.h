@@ -7,6 +7,7 @@
 #include "polynomial.h"
 #include "modint.h"
 #include "polytree.h"
+#include "matrix.h"
 
 degree mp_add(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m);
 degree mp_sub(const polynomial p, degree dp, const polynomial q, degree dq, polynomial r, modulus m);
@@ -43,6 +44,7 @@ polytree* mp_numerator_tree(const polytree* tree, const integer* leaves, unsigne
 void mp_fast_multipoint_eval(const polynomial p, degree dp, const integer *x, integer *y, unsigned int n, modulus m);
 degree mp_fast_interpolation(const integer* x, const integer* y, unsigned int n, polynomial p, modulus m);
 
-/* Monic polynomial */
+/* Factorization */
 
 degree mp_monic(const polynomial p, degree dp, polynomial r, modulus m);
+void mp_berlekamp_facto(const polynomial p, degree dp, polynomial q, degree *dq, polynomial r, degree *dr, modulus m);

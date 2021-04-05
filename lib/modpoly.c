@@ -697,3 +697,52 @@ degree mp_monic(const polynomial p, degree dp, polynomial r, modulus m)
 
     return dp;
 }
+
+/**
+ * Computes a factorization of a polynomial p in Fm[x] using Berlekamp's algorithm.
+ * 
+ * @param p polynomial
+ * @param dp degree of p
+ * @param q first factor
+ * @param dq degree of q
+ * @param r second factor
+ * @param dr degree of r
+ * @param m modulus
+ */
+void mp_berlekamp_facto(const polynomial p, degree dp, polynomial q, degree *dq, polynomial r, degree *dr, modulus m)
+{
+    polynomial f, x, y;
+    degree df, dx, dy;
+    matrix mat;
+    int i, j;
+
+    /* Compute monic polynomial */
+    df = mp_monic(p, dp, f, m);
+
+    /* Compute the matrix of a -> a^q - a */
+    mat = mat_zeros(df, df);
+    for (i = 0; i < df; i++)
+    {
+        /* Create polynomial (x^i)^m */
+        dx = i * m;
+        for (j = 0; j < dx; j++)
+        {
+            x[j] = 0;
+        }
+        x[dx] = 1;
+
+        /* Compute y = (x^i)^m mod f */
+        dy = mp_mod(x, dx, f, df, y, m);
+
+        /* Set the column i of the matrix */
+        for (j = 0; j <= dy; j++)
+        {
+            mat[j][i] = y[j];
+        }
+    }
+    mat_print(mat, df, df, "Q");
+
+    /* TODO to complete */
+
+    mat_delete(mat, df);
+}
