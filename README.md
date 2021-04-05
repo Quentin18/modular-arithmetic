@@ -237,6 +237,7 @@ Voici la liste des algorithmes implémentés (ou à faire) :
 - [x] Interpolation rapide
 - [ ] [Algorithme de Wiedemann](https://en.wikipedia.org/wiki/Block_Wiedemann_algorithm)
 - [ ] [Algorithme de remontée de Hensel](https://fr.wikipedia.org/wiki/Lemme_de_Hensel)
+- [ ] [Algorithme de Berlekamp](https://fr.wikipedia.org/wiki/Algorithme_de_Berlekamp)
 
 ## Documentation
 
