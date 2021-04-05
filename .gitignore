@@ -5,4 +5,5 @@
 .vscode
 
 docs/
+build/
 *.dot

@@ -64,6 +64,8 @@ Le répertoire `src` contient les fonctions principales pour générer des exéc
 
 ### Compilation
 
+Les exécutables sont créés dans le répertoire `build`.
+
 - Pour compiler tous les exécutables :
 ```
 make
@@ -71,11 +73,9 @@ make
 - Pour compiler l'exécutable **extendedGcdInt.out** :
 ```
 cd src
-make ../extendedGcdInt.out
+make build/extendedGcdInt.out
 ```
 Protocole similaire pour tous les exécutables ci-dessous.
-
-Les exécutables créés se trouvent à la racine du répertoire.
 
 ### Description
 
