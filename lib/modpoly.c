@@ -740,6 +740,13 @@ void mp_berlekamp_facto(const polynomial p, degree dp, polynomial q, degree *dq,
             mat[j][i] = y[j];
         }
     }
+
+    /* Subtract identity */
+    for (i = 0; i < df; i++)
+    {
+        mat[i][i] = mi_sub(mat[i][i], 1, m);
+    }
+
     mat_print(mat, df, df, "Q");
 
     /* TODO to complete */
