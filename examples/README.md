@@ -25,3 +25,5 @@ Voici la description des exemples :
 - **Exemple 10** : dérivation des polynômes
 - **Exemple 11** : interpolation des polynômes
 - **Exemple 12** : séries formelles
+- **Exemple 13** : factorisation des polynômes
+- **Exemple 14** : résultant
