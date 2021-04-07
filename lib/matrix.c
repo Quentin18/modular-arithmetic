@@ -97,8 +97,91 @@ void mat_print(const matrix m, dim nrows, dim ncols, char *name)
     {
         for (j = 0; j < ncols; j++)
         {
-            printf("\t%d", m[i][j]);
+            printf(" %7d", m[i][j]);
         }
         printf("\n");
     }
+}
+
+/**
+ * Computes the submatrix of m privated of a row and a column in s.
+ * 
+ * @param m matrix of dimension d
+ * @param d dimension
+ * @param row row to ignore
+ * @param col column to ignore
+ * @param s submatrix of dimension d - 1
+ */
+void mat_submat(const matrix m, dim d, int row, int col, matrix s)
+{
+    /* Indexes for m */
+    int r, c;
+
+    /* Indexes for s */
+    int i = 0, j = 0;
+
+    /* Loop rows */
+    for (r = 0; r < d; r++)
+    {
+        /* Row to ignore */
+        if (r == row)
+        {
+            continue;
+        }
+
+        /* Reset column index for new row */
+        j = 0;
+
+        /* Loop columns */
+        for (c = 0; c < d; c++)
+        {
+            /* Column to ignore */
+            if (c == col)
+            {
+                continue;
+            }
+            s[i][j] = m[r][c];
+
+            /* Next column */
+            j++;
+        }
+
+        /* Next row */
+        i++;
+    }
+}
+
+/**
+ * Computes the determinant of a square matrix.
+ * 
+ * @param m matrix
+ * @param d dimension
+ * @return det(m)
+ */
+integer mat_det(const matrix m, dim d)
+{
+    matrix subm;
+    int i, j;
+    integer det = 0;
+
+    if (d == 1)
+    {
+        det = m[0][0];
+    }
+    if (d == 2)
+    {
+        det = m[0][0] * m[1][1] - m[0][1] * m[1][0];
+    }
+    else
+    {
+        subm = mat_create(d - 1, d - 1);
+        j = 0;
+        for (i = 0; i < d; i++)
+        {
+            mat_submat(m, d, i, j, subm);
+            det += m[i][j] * ((i % 2 == 0)? 1 : -1) * mat_det(subm, d - 1);
+        }
+        mat_delete(subm, d - 1);
+    }
+    return det;
 }

@@ -20,3 +20,5 @@ matrix mat_create(dim nrows, dim ncols);
 void mat_delete(matrix m, dim nrows);
 matrix mat_zeros(dim nrows, dim ncols);
 void mat_print(const matrix m, dim nrows, dim ncols, char *name);
+void mat_submat(const matrix m, dim d, int row, int col, matrix s);
+integer mat_det(const matrix m, dim d);
