@@ -1,6 +1,6 @@
 /**
- * @file example5.c
- * @brief Example 5: Euclidean division with polynomial arithmetic in Fm[x]
+ * @file example05.c
+ * @brief Example 05: Euclidean division with polynomial arithmetic in Fm[x]
  */
 #include <stdio.h>
 #include "modpoly.h"

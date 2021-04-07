@@ -1,6 +1,6 @@
 /**
- * @file example2.c
- * @brief Example 2: Simple operations with modular arithmetic for integers
+ * @file example02.c
+ * @brief Example 02: Simple operations with modular arithmetic for integers
  */
 #include <stdio.h>
 #include "modint.h"

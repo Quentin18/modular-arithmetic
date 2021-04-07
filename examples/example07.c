@@ -1,6 +1,6 @@
 /**
- * @file example7.c
- * @brief Example 7: Simple operations with polynomial arithmetic in Fm[x]/(P)
+ * @file example07.c
+ * @brief Example 07: Simple operations with polynomial arithmetic in Fm[x]/(P)
  */
 #include <stdio.h>
 #include "modpolyp.h"

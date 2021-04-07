@@ -1,6 +1,6 @@
 /**
- * @file example9.c
- * @brief Example 9: Trees in Fm[x]
+ * @file example09.c
+ * @brief Example 09: Trees in Fm[x]
  */
 #include <stdio.h>
 #include "modpoly.h"

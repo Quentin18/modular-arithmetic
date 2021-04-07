@@ -1,6 +1,6 @@
 /**
- * @file example6.c
- * @brief Example 6: Extended Euclidean algorithm for polynomials in Fm[x]
+ * @file example06.c
+ * @brief Example 06: Extended Euclidean algorithm for polynomials in Fm[x]
  * 
  * Source: https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example_2
  */

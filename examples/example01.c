@@ -1,6 +1,6 @@
 /**
- * @file example1.c
- * @brief Example 1: Extended Euclidean algorithm for integers
+ * @file example01.c
+ * @brief Example 01: Extended Euclidean algorithm for integers
  * 
  * Source: https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Example
  */

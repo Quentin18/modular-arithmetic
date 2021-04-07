@@ -1,6 +1,6 @@
 /**
- * @file example4.c
- * @brief Example 4: Simple operations with polynomial arithmetic in Fm[x]
+ * @file example04.c
+ * @brief Example 04: Simple operations with polynomial arithmetic in Fm[x]
  */
 #include <stdio.h>
 #include "modpoly.h"
