@@ -43,13 +43,21 @@ Les arbres peuvent être exportés au format dot et visualisés avec [Graphviz](
 ![subproduct tree](img/s_tree.png)
 ![remainder tree](img/r_tree.png)
 
+### Matrices d'entiers
+
+Les fichiers `matrix` définissent les matrices d'entiers.
+Le type `matrix` permet de définir une matrice et `dim` représente une dimension.
+Les matrices d'entiers sont utilisées dans les fonctions suivantes :
+- `p_sylvester` : retourne la [matrice de Sylvester](https://fr.wikipedia.org/wiki/Matrice_de_Sylvester) de deux polynômes
+- `p_resultant` : calcule le [résultant](https://fr.wikipedia.org/wiki/R%C3%A9sultant) de deux polynômes (déterminant de la matrice de Sylvester)
+
 ## Exemples
 
 Le répertoire `examples` contient des exemples d'utilisation de la librairie `libmod`.
 - Pour compiler un exemple :
 ```
 cd examples
-make example1.out
+make example01.out
 ```
 - Pour compiler tous les exemples :
 ```
