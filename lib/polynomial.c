@@ -289,3 +289,28 @@ matrix p_sylvester(const polynomial p, degree dp, const polynomial q, degree dq)
 
     return s;
 }
+
+/**
+ * Computes the resultant of two polynomials p and q.
+ * 
+ * @param p first polynomial
+ * @param dp degree of p
+ * @param q second polynomial
+ * @param dq degree of q
+ * @return Res(p, q)
+ */
+integer p_resultant(const polynomial p, degree dp, const polynomial q, degree dq)
+{
+    integer res;
+
+    /* Create Sylvester matrix */
+    matrix syl = p_sylvester(p, dp, q, dq);
+
+    /* Calculate determinant */
+    res = mat_det(syl, dp + dq);
+
+    /* Delete Sylvester matrix */
+    mat_delete(syl, dp + dq);
+
+    return res;
+}

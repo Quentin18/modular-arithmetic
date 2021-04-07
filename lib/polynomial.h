@@ -45,3 +45,4 @@ int p_are_equal(const polynomial p, degree dp, const polynomial q, degree dq);
 /* Resultant */
 
 matrix p_sylvester(const polynomial p, degree dp, const polynomial q, degree dq);
+integer p_resultant(const polynomial p, degree dp, const polynomial q, degree dq);
