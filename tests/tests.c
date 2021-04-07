@@ -9,6 +9,7 @@
 #include "extendedGcdPoly.h"
 #include "modint.h"
 #include "modpoly.h"
+#include "matrix.h"
 
 /* Extended Euclidean algorithm */
 MU_TEST(test_extended_gcd_int)
@@ -129,6 +130,20 @@ MU_TEST(test_extended_gcd_poly)
 	mu_check(p_are_equal(v, dv, e, de));
 }
 
+/* Matrix */
+MU_TEST(test_matrix)
+{
+	dim d = 3;
+    matrix m = mat_create(d, d);
+    m[0][0] = -2; m[0][1] = 2; m[0][2] = -3;
+    m[1][0] = -1; m[1][1] = 1; m[1][2] = 3;
+    m[2][0] = 2; m[2][1] = 0; m[2][2] = -1;
+
+	/* Determinant */
+    mu_check(mat_det(m, d) == 18);
+    mat_delete(m, d);
+}
+
 /* Test suite */
 MU_TEST_SUITE(test_suite)
 {
@@ -137,6 +152,7 @@ MU_TEST_SUITE(test_suite)
 	MU_RUN_TEST(test_modpoly);
 	MU_RUN_TEST(test_modpoly_div);
 	MU_RUN_TEST(test_extended_gcd_poly);
+	MU_RUN_TEST(test_matrix);
 }
 
 /**
