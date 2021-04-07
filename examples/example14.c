@@ -15,14 +15,19 @@ int main()
     polynomial q = {3, 2, -4, 1};
     degree dq = 3;
 
-    matrix s = p_sylvester(p, dp, q, dq);
+    /* Sylvester matrix */
+    matrix syl = p_sylvester(p, dp, q, dq);
     dim d = dp + dq;
+
+    /* Resultant */
+    integer res = p_resultant(p, dp, q, dq);
 
     p_print(p, dp, "P");
     p_print(q, dq, "Q");
-    mat_print(s, d, d, "Sylv(P, Q)");
+    mat_print(syl, d, d, "Sylv(P, Q)");
+    i_print(res, "Res(P, Q)");
 
-    mat_delete(s, d);
+    mat_delete(syl, d);
 
     return 0;
 }
